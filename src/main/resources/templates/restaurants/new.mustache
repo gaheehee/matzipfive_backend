@@ -1,0 +1,11 @@
+{{>layouts/header}}
+
+<form class="container" action="/restaurants/create" method="post">
+    <div class="mb-3">
+        <label class="form-label">맛집 이름</label>
+        <input type="text" class="form-control" name="restaurantName">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{{>layouts/footer}}

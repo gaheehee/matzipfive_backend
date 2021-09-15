@@ -1,0 +1,15 @@
+{{>layouts/header}}
+
+<form class="container" action="/users/create" method="post">
+    <div class="mb-3">
+        <label class="form-label">ID</label>
+        <input type="text" class="form-control" name="userID">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">사용자 이름</label>
+        <input type="text" class="form-control" name="userName">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{{>layouts/footer}}
