@@ -12,20 +12,20 @@ import lombok.ToString;
 @ToString
 public class Recomment {
 
-    private Integer recommentId;
     private Integer reviewCommentId;
+    private Integer recommentId;
     private String comment;
     private String createAt;
 
     @JsonCreator
     @Builder
-    public Recomment(@JsonProperty("recommentId") Integer recommentId,
-                     @JsonProperty("reviewCommentId") Integer reviewCommentId,
+    public Recomment(@JsonProperty("reviewCommentId") Integer reviewCommentId,
+                     @JsonProperty("recommentId") Integer recommentId,
                      @JsonProperty("comment") String comment,
                      @JsonProperty("createAt") String createAt) {
 
-        this.recommentId = recommentId;
         this.reviewCommentId = reviewCommentId;
+        this.recommentId = recommentId;
         this.comment = comment;
         this.createAt = createAt;
     }

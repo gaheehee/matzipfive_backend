@@ -1,6 +1,5 @@
 package com.example.firstproject.dao;
 
-import com.example.firstproject.model.Review;
 import com.example.firstproject.model.ReviewComment;
 import org.springframework.stereotype.Repository;
 
