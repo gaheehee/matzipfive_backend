@@ -31,7 +31,5 @@ public class Restaurant {
         return restaurantName;
     }
 
-    public void setRestaurantName(String restaurantName) {
-        this.restaurantName = restaurantName;
-    }
+
 }

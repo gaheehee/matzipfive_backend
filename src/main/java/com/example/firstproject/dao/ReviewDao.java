@@ -20,10 +20,10 @@ public class ReviewDao {
 
     static{
         reviews = new ArrayList<>();
-        reviews.add(new Review(1,1,34,"너무 맛있어용",4,"2021년 09월 16일, 오후 02:17"));
-        reviews.add(new Review(2,2,34,"굿",4,"2021년 09월 16일, 오후 02:17"));
-        reviews.add(new Review(1,3,6,"짱",4,"2021년 09월 16일, 오후 02:17"));
-        reviews.add(new Review(2,4,8,"JMT",4,"2021년 09월 16일, 오후 02:17"));
+        reviews.add(new Review(1,1,"userId1","너무 맛있어용",4,"2021년 09월 16일, 오후 02:17"));
+        reviews.add(new Review(2,2,"userId2","굿",4,"2021년 09월 16일, 오후 02:17"));
+        reviews.add(new Review(1,3,"userId3","짱",4,"2021년 09월 16일, 오후 02:17"));
+        reviews.add(new Review(2,4,"userId4","JMT",4,"2021년 09월 16일, 오후 02:17"));
 
     }
 
@@ -44,9 +44,9 @@ public class ReviewDao {
                 .orElse(new Review(-1,-1,-1,"",-1,""));*/
     }
 
-    public List<Review> getReviewsByUserNo(Integer userNo) {
+    public List<Review> getReviewsByUserId(String userId) {
 
-        List<Review> reviewList = reviews.stream() .filter(review -> review.getUserNo().equals(userNo)) .collect(Collectors.toList());
+        List<Review> reviewList = reviews.stream() .filter(review -> review.getUserId().equals(userId)) .collect(Collectors.toList());
 
         return reviewList;
 
@@ -74,7 +74,7 @@ public class ReviewDao {
         reviews.stream()
                 .filter(curReview -> curReview.getReviewId().equals(reviewId))
                 .findAny()
-                .orElse(new Review(-1,-1,-1,"",-1,""))
+                .orElse(new Review(-1,-1,"","",-1,""))
                 .setContent(review.getContent());
 
         // 리뷰글 수정날짜 업뎃
@@ -86,14 +86,14 @@ public class ReviewDao {
         reviews.stream()
                 .filter(curRecomment -> curRecomment.getReviewId().equals(reviewId))
                 .findAny()
-                .orElse(new Review(-1,-1,-1,"",-1,""))
+                .orElse(new Review(-1,-1,"","",-1,""))
                 .setCreatedAt(review.getCreatedAt());
 
         // 리뷰 하트 수 없뎃
         reviews.stream()
                 .filter(curReview -> curReview.getReviewId().equals(reviewId))
                 .findAny()
-                .orElse(new Review(-1,-1,-1,"",-1,""))
+                .orElse(new Review(-1,-1,"","",-1,""))
                 .setHeart_num(review.getHeart_num());
 
     }

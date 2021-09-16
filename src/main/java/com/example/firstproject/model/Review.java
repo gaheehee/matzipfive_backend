@@ -14,7 +14,7 @@ public class Review {
 
     private Integer restaurantId;
     private Integer reviewId;
-    private Integer userNo;
+    private String userId;
     private String content;
     private Integer heart_num;
     public String createdAt;
@@ -23,14 +23,14 @@ public class Review {
     @Builder
     public Review(@JsonProperty("restaurantId") Integer restaurantId,
                   @JsonProperty("reviewId") Integer reviewId,
-                  @JsonProperty("userNo") Integer userNo,
+                  @JsonProperty("userId") String userId,
                   @JsonProperty("content") String content,
                   @JsonProperty("heart_num") Integer heart_num,
                   @JsonProperty("createAt") String createdAt) {
 
         this.restaurantId = restaurantId;
         this.reviewId = reviewId;
-        this.userNo = userNo;
+        this.userId = userId;
         this.content = content;
         this.heart_num = heart_num;
         this.createdAt = createdAt;
@@ -44,8 +44,8 @@ public class Review {
         return restaurantId;
     }
 
-    public Integer getUserNo() {
-        return userNo;
+    public String getUserId() {
+        return userId;
     }
 
     public String getContent() {
@@ -68,8 +68,8 @@ public class Review {
         this.restaurantId = restaurantId;
     }
 
-    public void setUserNo(Integer userNo) {
-        this.userNo = userNo;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public void setContent(String content) {

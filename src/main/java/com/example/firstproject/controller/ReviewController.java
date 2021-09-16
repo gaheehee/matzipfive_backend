@@ -25,9 +25,9 @@ public class ReviewController {
         return reviewService.getReviewsByRestaurantId(restaurantId);
     }
 
-    @GetMapping("/{restaurantId}/{reviewId}/{userNo}")
-    public List<Review> getReviewsByUserNo(@PathVariable Integer userNo) {
-        return reviewService.getReviewsByUserNo(userNo);
+    @GetMapping("/{restaurantId}/{reviewId}/{userId}")
+    public List<Review> getReviewsByUserId(@PathVariable String userId) {
+        return reviewService.getReviewsByUserId(userId);
     }
 
     @PostMapping("")

@@ -17,10 +17,10 @@ public class ReviewCommentDao {
 
     static{
         reviewComments = new ArrayList<>();
-        reviewComments.add(new ReviewComment(1,1,32,"맞아","2021년 09월 16일, 오후 02:17"));
-        reviewComments.add(new ReviewComment(1,2,5,"나도 맛있더라","2021년 09월 16일, 오후 02:17"));
-        reviewComments.add(new ReviewComment(2,3,32,"ㅋㅋㅋ","2021년 09월 16일, 오후 02:17"));
-        reviewComments.add(new ReviewComment(4,4,2,"맛있겠다~","2021년 09월 16일, 오후 02:17"));
+        reviewComments.add(new ReviewComment(1,1,"userId1","맞아","2021년 09월 16일, 오후 02:17"));
+        reviewComments.add(new ReviewComment(1,2,"userId2","나도 맛있더라","2021년 09월 16일, 오후 02:17"));
+        reviewComments.add(new ReviewComment(2,3,"userId3","ㅋㅋㅋ","2021년 09월 16일, 오후 02:17"));
+        reviewComments.add(new ReviewComment(4,4,"userId4","맛있겠다~","2021년 09월 16일, 오후 02:17"));
     }
 
     public List<ReviewComment> getAllReviewComments() {
@@ -46,7 +46,7 @@ public class ReviewCommentDao {
         reviewComments.stream()
                 .filter(curReviewComment -> curReviewComment.getReviewCommentId().equals(reviewCommentId))
                 .findAny()
-                .orElse(new ReviewComment(-1,-1,-1,"",""))
+                .orElse(new ReviewComment(-1,-1,"","",""))
                 .setComment(reviewComment.getComment());
 
         Date today = new Date();
@@ -57,7 +57,7 @@ public class ReviewCommentDao {
         reviewComments.stream()
                 .filter(curRecomment -> curRecomment.getReviewCommentId().equals(reviewCommentId))
                 .findAny()
-                .orElse(new ReviewComment(-1,-1,-1,"",null))
+                .orElse(new ReviewComment(-1,-1,"","",null))
                 .setCreatedAt(reviewComment.getCreatedAt());
     }
 

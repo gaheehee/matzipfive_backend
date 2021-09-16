@@ -23,8 +23,8 @@ public class ReviewService {
         return reviewDao.getReviewsByRestaurantId(restaurantId);
     }
 
-    public List<Review> getReviewsByUserNo(Integer userNo) {
-        return reviewDao.getReviewsByUserNo(userNo);
+    public List<Review> getReviewsByUserId(String userId) {
+        return reviewDao.getReviewsByUserId(userId);
     }
 
     public Review registerReview(Review review) {
