@@ -17,7 +17,7 @@ public class Review {
     private Integer userNo;
     private String content;
     private Integer heart_num;
-    private String createdAt;
+    public String createdAt;
 
     @JsonCreator
     @Builder

@@ -1,10 +1,13 @@
 package com.example.firstproject.dao;
 
+import com.example.firstproject.model.Recomment;
 import com.example.firstproject.model.Review;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -55,16 +58,44 @@ public class ReviewDao {
     }
 
     public Review insertReview(Review review) {
+
+        Date today = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy'년' MM'월' dd'일', a hh:mm");
+        String timeStamp = formatter.format(today);
+
+        review.createdAt = timeStamp;
+
         reviews.add(review);
         return review;
     }
 
     public void updateReview(Integer reviewId, Review review) {
+        // 리뷰글 내용 업뎃
         reviews.stream()
                 .filter(curReview -> curReview.getReviewId().equals(reviewId))
                 .findAny()
                 .orElse(new Review(-1,-1,-1,"",-1,""))
                 .setContent(review.getContent());
+
+        // 리뷰글 수정날짜 업뎃
+        Date today = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy'년' MM'월' dd'일', a hh:mm");
+        String timeStamp = formatter.format(today);
+        review.createdAt = timeStamp;
+
+        reviews.stream()
+                .filter(curRecomment -> curRecomment.getReviewId().equals(reviewId))
+                .findAny()
+                .orElse(new Review(-1,-1,-1,"",-1,""))
+                .setCreatedAt(review.getCreatedAt());
+
+        // 리뷰 하트 수 없뎃
+        reviews.stream()
+                .filter(curReview -> curReview.getReviewId().equals(reviewId))
+                .findAny()
+                .orElse(new Review(-1,-1,-1,"",-1,""))
+                .setHeart_num(review.getHeart_num());
+
     }
 
     public void deleteReview(Integer reviewId) {

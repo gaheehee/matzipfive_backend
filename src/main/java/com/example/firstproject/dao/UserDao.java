@@ -8,14 +8,21 @@ import java.util.List;
 
 @Repository
 public class UserDao {
+
+    public static List<Integer> amooguna;
+    static{
+        amooguna = new ArrayList<>();
+        amooguna.add(1); amooguna.add(2); amooguna.add(3);
+    }
+
     public static List<User> users;
 
     //실제 데이터는 DB에서 가져오는게 맞으나 .... 아직 DB가 없으니 임시로 세팅해놓음
     static {
         users = new ArrayList<>();
-        users.add(new User("testId1","testName1", "1234"));
-        users.add(new User("testId2","testName2", "1234"));
-        users.add(new User("testId3","testName3", "1234"));
+        users.add(new User("testId1","testName1", "1234",amooguna,amooguna, amooguna));
+        users.add(new User("testId2","testName2", "1234",amooguna, amooguna,amooguna));
+        users.add(new User("testId3","testName3", "1234",amooguna,amooguna,amooguna));
     }
 
     // Select all user.
@@ -29,7 +36,7 @@ public class UserDao {
                 .stream()
                 .filter(user -> user.getUserId().equals(userId))
                 .findAny()
-                .orElse(new User("", "", ""));
+                .orElse(new User("", "", "",null, null, null));
     }
 
     // Insert User
@@ -44,7 +51,7 @@ public class UserDao {
         users.stream()
                 .filter(curUser -> curUser.getUserId().equals(userId))
                 .findAny()
-                .orElse(new User("", "", ""))
+                .orElse(new User("", "", "",null,null,null))
                 .setUserName(user.getUserName());
     }
 
