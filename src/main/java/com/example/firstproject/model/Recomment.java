@@ -15,19 +15,19 @@ public class Recomment {
     private Integer reviewCommentId;
     private Integer recommentId;
     private String comment;
-    private String createAt;
+    public String createdAt;
 
     @JsonCreator
     @Builder
     public Recomment(@JsonProperty("reviewCommentId") Integer reviewCommentId,
                      @JsonProperty("recommentId") Integer recommentId,
                      @JsonProperty("comment") String comment,
-                     @JsonProperty("createAt") String createAt) {
+                     @JsonProperty("createdAt") String createdAt) {
 
         this.reviewCommentId = reviewCommentId;
         this.recommentId = recommentId;
         this.comment = comment;
-        this.createAt = createAt;
+        this.createdAt = createdAt;
     }
 
     public Integer getRecommentId() {
@@ -42,8 +42,8 @@ public class Recomment {
         return comment;
     }
 
-    public String getCreateAt() {
-        return createAt;
+    public String getCreatedAt() {
+        return createdAt;
     }
 
     public void setRecommentId(Integer recommentId) {
@@ -58,7 +58,7 @@ public class Recomment {
         this.comment = comment;
     }
 
-    public void setCreateAt(String createAt) {
-        this.createAt = createAt;
+    public void setCreatedAt(String createAt) {
+        this.createdAt = createAt;
     }
 }

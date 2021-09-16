@@ -1,9 +1,12 @@
 package com.example.firstproject.dao;
 
+import com.example.firstproject.model.Recomment;
 import com.example.firstproject.model.ReviewComment;
 import org.springframework.stereotype.Repository;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,10 +17,10 @@ public class ReviewCommentDao {
 
     static{
         reviewComments = new ArrayList<>();
-        reviewComments.add(new ReviewComment(1,1,32,"맞아","2021년 8월 17일 1:56 PM"));
-        reviewComments.add(new ReviewComment(1,2,5,"나도 맛있더라","2016년 5월 10일 1:56 PM"));
-        reviewComments.add(new ReviewComment(2,3,32,"ㅋㅋㅋ","2021년 8월 1일 1:56 PM"));
-        reviewComments.add(new ReviewComment(4,4,2,"맛있겠다~","2011년 4월 7일 1:56 PM"));
+        reviewComments.add(new ReviewComment(1,1,32,"맞아","2021년 09월 16일, 오후 02:17"));
+        reviewComments.add(new ReviewComment(1,2,5,"나도 맛있더라","2021년 09월 16일, 오후 02:17"));
+        reviewComments.add(new ReviewComment(2,3,32,"ㅋㅋㅋ","2021년 09월 16일, 오후 02:17"));
+        reviewComments.add(new ReviewComment(4,4,2,"맛있겠다~","2021년 09월 16일, 오후 02:17"));
     }
 
     public List<ReviewComment> getAllReviewComments() {
@@ -30,6 +33,11 @@ public class ReviewCommentDao {
     }
 
     public ReviewComment insertReviewComment(ReviewComment reviewComment) {
+        Date today = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy'년' MM'월' dd'일', a hh:mm");
+        String timeStamp = formatter.format(today);
+
+        reviewComment.createdAt = timeStamp;
         reviewComments.add(reviewComment);
         return reviewComment;
     }
@@ -40,6 +48,17 @@ public class ReviewCommentDao {
                 .findAny()
                 .orElse(new ReviewComment(-1,-1,-1,"",""))
                 .setComment(reviewComment.getComment());
+
+        Date today = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy'년' MM'월' dd'일', a hh:mm");
+        String timeStamp = formatter.format(today);
+        reviewComment.createdAt = timeStamp;
+
+        reviewComments.stream()
+                .filter(curRecomment -> curRecomment.getReviewCommentId().equals(reviewCommentId))
+                .findAny()
+                .orElse(new ReviewComment(-1,-1,-1,"",null))
+                .setCreatedAt(reviewComment.getCreatedAt());
     }
 
     public void deleteReviewComment(Integer reviewCommentId) {

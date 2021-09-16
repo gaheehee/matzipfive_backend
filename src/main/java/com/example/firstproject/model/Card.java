@@ -7,7 +7,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,17 +18,20 @@ public class Card {
 
     private Integer cardId;
     private String userId;
-    private String createdAt;
+    public String createdAt;
+    public List<Integer> card_restaurantIds;
 
     @JsonCreator
     @Builder
     public Card(@JsonProperty("cardId") Integer cardId,
                 @JsonProperty("userId") String userId,
-                @JsonProperty("createdAt") String createdAt) {
+                @JsonProperty("createdAt") String createdAt,
+                @JsonProperty("card_restaurantIds") List<Integer> card_restaurantIds) {
 
         this.cardId = cardId;
         this.userId = userId;
         this.createdAt = createdAt;
+        this.card_restaurantIds = card_restaurantIds;
     }
 
     public Integer getCardId() { return cardId; }
@@ -40,4 +45,12 @@ public class Card {
     public String getCreatedAt() { return createdAt; }
 
     public void setCreatedAt(String createdAt) { this.createdAt = createdAt; }
+
+    public List<Integer> getCard_restaurantIds() {
+        return card_restaurantIds;
+    }
+
+    public void setCard_restaurantIds(List<Integer> card_restaurantIds) {
+        this.card_restaurantIds = card_restaurantIds;
+    }
 }

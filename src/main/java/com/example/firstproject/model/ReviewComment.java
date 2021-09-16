@@ -16,7 +16,7 @@ public class ReviewComment {
     private Integer reviewCommentId;
     private Integer userId;
     private String comment;
-    private String createdAt;
+    public String createdAt;
 
     @JsonCreator
     @Builder

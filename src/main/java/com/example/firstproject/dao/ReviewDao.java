@@ -17,10 +17,10 @@ public class ReviewDao {
 
     static{
         reviews = new ArrayList<>();
-        reviews.add(new Review(1,1,34,"너무 맛있어용",4,"2021년 8월 17일 1:56 PM"));
-        reviews.add(new Review(2,2,34,"굿",4,"2018년 5월 17일 1:56 PM"));
-        reviews.add(new Review(1,3,6,"짱",4,"2006년 4월 17일 1:56 PM"));
-        reviews.add(new Review(2,4,8,"JMT",4,"2020년 3월 17일 1:56 PM"));
+        reviews.add(new Review(1,1,34,"너무 맛있어용",4,"2021년 09월 16일, 오후 02:17"));
+        reviews.add(new Review(2,2,34,"굿",4,"2021년 09월 16일, 오후 02:17"));
+        reviews.add(new Review(1,3,6,"짱",4,"2021년 09월 16일, 오후 02:17"));
+        reviews.add(new Review(2,4,8,"JMT",4,"2021년 09월 16일, 오후 02:17"));
 
     }
 
