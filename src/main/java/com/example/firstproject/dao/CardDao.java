@@ -12,38 +12,22 @@ import java.util.Optional;
 @Repository
 public class CardDao {
 
-    public static List<Card> cards;
+    public List<Integer> MockCardRestaurantIds = new ArrayList<>();
+    { MockCardRestaurantIds.add(1); MockCardRestaurantIds.add(2); MockCardRestaurantIds.add(3); }
 
-    public static List<Integer> card_restaurantIds_1;
-    public static List<Integer> card_restaurantIds_2;
-    public static List<Integer> card_restaurantIds_3;
-
-    static{
-        card_restaurantIds_1 = new ArrayList<>();
-        card_restaurantIds_1.add(1); card_restaurantIds_1.add(2); card_restaurantIds_1.add(3);
-    }
-    static{
-        card_restaurantIds_2 = new ArrayList<>();
-        card_restaurantIds_2.add(1); card_restaurantIds_2.add(2); card_restaurantIds_2.add(3);
-    }
-    static{
-        card_restaurantIds_3 = new ArrayList<>();
-        card_restaurantIds_3.add(1); card_restaurantIds_3.add(2); card_restaurantIds_3.add(3);
-    }
-
-    static {
-        cards = new ArrayList<>();
-        cards.add(new Card(1,"user1","2021년 09월 16일, 오후 02:17",card_restaurantIds_1));
-        cards.add(new Card(2,"user2","2021년 09월 16일, 오후 02:17",card_restaurantIds_2));
-        cards.add(new Card(3,"user3","2021년 09월 16일, 오후 02:17",card_restaurantIds_3));
+    public List<Card> MockCards = new ArrayList<>();
+    {
+        MockCards.add(new Card(1,"user1","2021년 09월 16일, 오후 02:17",MockCardRestaurantIds));
+        MockCards.add(new Card(2,"user2","2021년 09월 16일, 오후 02:17",MockCardRestaurantIds));
+        MockCards.add(new Card(3,"user3","2021년 09월 16일, 오후 02:17",MockCardRestaurantIds));
     }
 
     public List<Card> getAllCards() {
-        return cards;
+        return MockCards;
     }
 
     public Card getCardByCardId(Integer cardId) {
-        return cards
+        return MockCards
                 .stream()
                 .filter(card -> card.getCardId().equals(cardId))
                 .findAny()
@@ -57,14 +41,14 @@ public class CardDao {
         String timeStamp = formatter.format(today);
 
         card.createdAt = timeStamp;
-        cards.add(card);
+        MockCards.add(card);
 
         return card;
     }
 
     public void updateCard(Integer cardId, Card card) {
         //Optional<Card> anyElement = cards.stream().filter(curCard -> curCard.getCardId().equals(cardId)).findAny();
-        cards.stream()
+        MockCards.stream()
                 .filter(curCard -> curCard.getCardId().equals(cardId))
                 .findAny()
                 .orElse(new Card(-1,"",null,null))
@@ -72,7 +56,7 @@ public class CardDao {
     }
 
     public void deleteCard(Integer cardId) {
-        cards.removeIf(card -> card.getCardId().equals(cardId));
+        MockCards.removeIf(card -> card.getCardId().equals(cardId));
     }
 
 }

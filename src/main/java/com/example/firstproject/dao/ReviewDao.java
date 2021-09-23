@@ -16,24 +16,23 @@ import java.util.stream.Stream;
 @Repository
 public class ReviewDao {
 
-    public static List<Review> reviews;
+    public List<Review> MockReviews = new ArrayList<>();
 
-    static{
-        reviews = new ArrayList<>();
-        reviews.add(new Review(1,1,"userId1","너무 맛있어용",4,"2021년 09월 16일, 오후 02:17"));
-        reviews.add(new Review(2,2,"userId2","굿",4,"2021년 09월 16일, 오후 02:17"));
-        reviews.add(new Review(1,3,"userId3","짱",4,"2021년 09월 16일, 오후 02:17"));
-        reviews.add(new Review(2,4,"userId4","JMT",4,"2021년 09월 16일, 오후 02:17"));
+    {
+        MockReviews.add(new Review(1,1,"userId1","너무 맛있어용",4,"2021년 09월 16일, 오후 02:17"));
+        MockReviews.add(new Review(2,2,"userId2","굿",4,"2021년 09월 16일, 오후 02:17"));
+        MockReviews.add(new Review(1,3,"userId3","짱",4,"2021년 09월 16일, 오후 02:17"));
+        MockReviews.add(new Review(2,4,"userId4","JMT",4,"2021년 09월 16일, 오후 02:17"));
 
     }
 
     public List<Review> getAllReviews() {
-        return reviews;
+        return MockReviews;
     }
 
     public List<Review> getReviewsByRestaurantId(Integer restaurantId) {
 
-        List<Review> reviewList = reviews.stream() .filter(review -> review.getRestaurantId().equals(restaurantId)) .collect(Collectors.toList());
+        List<Review> reviewList = MockReviews.stream() .filter(review -> review.getRestaurantId().equals(restaurantId)) .collect(Collectors.toList());
 
         return reviewList;
 
@@ -46,7 +45,7 @@ public class ReviewDao {
 
     public List<Review> getReviewsByUserId(String userId) {
 
-        List<Review> reviewList = reviews.stream() .filter(review -> review.getUserId().equals(userId)) .collect(Collectors.toList());
+        List<Review> reviewList = MockReviews.stream() .filter(review -> review.getUserId().equals(userId)) .collect(Collectors.toList());
 
         return reviewList;
 
@@ -65,13 +64,13 @@ public class ReviewDao {
 
         review.createdAt = timeStamp;
 
-        reviews.add(review);
+        MockReviews.add(review);
         return review;
     }
 
     public void updateReview(Integer reviewId, Review review) {
         // 리뷰글 내용 업뎃
-        reviews.stream()
+        MockReviews.stream()
                 .filter(curReview -> curReview.getReviewId().equals(reviewId))
                 .findAny()
                 .orElse(new Review(-1,-1,"","",-1,""))
@@ -83,14 +82,14 @@ public class ReviewDao {
         String timeStamp = formatter.format(today);
         review.createdAt = timeStamp;
 
-        reviews.stream()
+        MockReviews.stream()
                 .filter(curRecomment -> curRecomment.getReviewId().equals(reviewId))
                 .findAny()
                 .orElse(new Review(-1,-1,"","",-1,""))
                 .setCreatedAt(review.getCreatedAt());
 
         // 리뷰 하트 수 없뎃
-        reviews.stream()
+        MockReviews.stream()
                 .filter(curReview -> curReview.getReviewId().equals(reviewId))
                 .findAny()
                 .orElse(new Review(-1,-1,"","",-1,""))
@@ -99,6 +98,6 @@ public class ReviewDao {
     }
 
     public void deleteReview(Integer reviewId) {
-        reviews.removeIf(review -> review.getReviewId().equals(reviewId));
+        MockReviews.removeIf(review -> review.getReviewId().equals(reviewId));
     }
 }

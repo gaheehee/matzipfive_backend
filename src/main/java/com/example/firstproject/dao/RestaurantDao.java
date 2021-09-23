@@ -9,17 +9,16 @@ import java.util.List;
 @Repository
 public class RestaurantDao {
 
-    public static List<Restaurant> restaurants;
+    public List<Restaurant> MockRestaurants = new ArrayList<>();
 
-    static{
-        restaurants = new ArrayList<>();
-        restaurants.add(new Restaurant(1,"피자브라더스"));
-        restaurants.add(new Restaurant(2,"엽떡"));
-        restaurants.add(new Restaurant(3,"두찜"));
+    {
+        MockRestaurants.add(new Restaurant(1,"피자브라더스"));
+        MockRestaurants.add(new Restaurant(2,"엽떡"));
+        MockRestaurants.add(new Restaurant(3,"두찜"));
     }
 
     public Restaurant getRestaurantNameByRestaurantId(Integer restaurantId) {
-        return restaurants
+        return MockRestaurants
                 .stream()
                 .filter(restaurant -> restaurant.getRestaurantId().equals(restaurantId))
                 .findAny()

@@ -11,21 +11,26 @@ import java.util.List;
 @Repository
 public class RecommentDao {
 
-    public static List<Recomment> recomments;
-
+    public List<Recomment> mock_recomments = new ArrayList<>();
+    {
+        mock_recomments.add(new Recomment(2,1,"ㅇㅈ","2021년 09월 16일, 오후 02:17"));
+        mock_recomments.add(new Recomment(4,2,"맞아","2021년 09월 16일, 오후 02:17"));
+        mock_recomments.add(new Recomment(1,3,"ㅇㅇㅇㅇ","2021년 09월 16일, 오후 02:17"));
+    }
+    /*public static List<Recomment> recomments;
     static{
         recomments = new ArrayList<>();
         recomments.add(new Recomment(2,1,"ㅇㅈ","2021년 09월 16일, 오후 02:17"));
         recomments.add(new Recomment(4,2,"맞아","2021년 09월 16일, 오후 02:17"));
         recomments.add(new Recomment(1,3,"ㅇㅇㅇㅇ","2021년 09월 16일, 오후 02:17"));
-    }
+    }*/
 
     public List<Recomment> getAllRecomments() {
-        return recomments;
+        return mock_recomments;
     }
 
     public Recomment getRecommentByReviewCommentId(Integer reviewCommentId) {
-        return recomments
+        return mock_recomments
                 .stream()
                 .filter(recomment -> recomment.getReviewCommentId().equals(reviewCommentId))
                 .findAny()
@@ -39,12 +44,12 @@ public class RecommentDao {
 
         recomment.createdAt = timeStamp;
 
-        recomments.add(recomment);
+        mock_recomments.add(recomment);
         return recomment;
     }
 
     public void updateRecomment(Integer recommentId, Recomment recomment) {
-        recomments.stream()
+        mock_recomments.stream()
                 .filter(curRecomment -> curRecomment.getRecommentId().equals(recommentId))
                 .findAny()
                 .orElse(new Recomment(-1,-1,"",""))
@@ -55,7 +60,7 @@ public class RecommentDao {
         String timeStamp = formatter.format(today);
         recomment.createdAt = timeStamp;
 
-        recomments.stream()
+        mock_recomments.stream()
                 .filter(curRecomment -> curRecomment.getRecommentId().equals(recommentId))
                 .findAny()
                 .orElse(new Recomment(-1,-1,"",null))
@@ -63,7 +68,7 @@ public class RecommentDao {
     }
 
     public void deleteRecomment(Integer recommentId) {
-        recomments.removeIf(recomment -> recomment.getRecommentId().equals(recommentId));
+        mock_recomments.removeIf(recomment -> recomment.getRecommentId().equals(recommentId));
     }
 
 }

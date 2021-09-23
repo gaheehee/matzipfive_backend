@@ -13,22 +13,21 @@ import java.util.stream.Collectors;
 @Repository
 public class ReviewCommentDao {
 
-    public static List<ReviewComment> reviewComments;
+    public List<ReviewComment> MockReviewComments = new ArrayList<>();
 
-    static{
-        reviewComments = new ArrayList<>();
-        reviewComments.add(new ReviewComment(1,1,"userId1","맞아","2021년 09월 16일, 오후 02:17"));
-        reviewComments.add(new ReviewComment(1,2,"userId2","나도 맛있더라","2021년 09월 16일, 오후 02:17"));
-        reviewComments.add(new ReviewComment(2,3,"userId3","ㅋㅋㅋ","2021년 09월 16일, 오후 02:17"));
-        reviewComments.add(new ReviewComment(4,4,"userId4","맛있겠다~","2021년 09월 16일, 오후 02:17"));
+    {
+        MockReviewComments.add(new ReviewComment(1,1,"userId1","맞아","2021년 09월 16일, 오후 02:17"));
+        MockReviewComments.add(new ReviewComment(1,2,"userId2","나도 맛있더라","2021년 09월 16일, 오후 02:17"));
+        MockReviewComments.add(new ReviewComment(2,3,"userId3","ㅋㅋㅋ","2021년 09월 16일, 오후 02:17"));
+        MockReviewComments.add(new ReviewComment(4,4,"userId4","맛있겠다~","2021년 09월 16일, 오후 02:17"));
     }
 
     public List<ReviewComment> getAllReviewComments() {
-        return reviewComments;
+        return MockReviewComments;
     }
 
     public List<ReviewComment> getReviewCommentsByReviewId(Integer reviewId) {
-        List<ReviewComment> reviewCommentList = reviewComments.stream() .filter(review -> review.getReviewId().equals(reviewId)) .collect(Collectors.toList());
+        List<ReviewComment> reviewCommentList = MockReviewComments.stream() .filter(review -> review.getReviewId().equals(reviewId)) .collect(Collectors.toList());
         return reviewCommentList;
     }
 
@@ -38,12 +37,12 @@ public class ReviewCommentDao {
         String timeStamp = formatter.format(today);
 
         reviewComment.createdAt = timeStamp;
-        reviewComments.add(reviewComment);
+        MockReviewComments.add(reviewComment);
         return reviewComment;
     }
 
     public void updateReviewComment(Integer reviewCommentId, ReviewComment reviewComment) {
-        reviewComments.stream()
+        MockReviewComments.stream()
                 .filter(curReviewComment -> curReviewComment.getReviewCommentId().equals(reviewCommentId))
                 .findAny()
                 .orElse(new ReviewComment(-1,-1,"","",""))
@@ -54,7 +53,7 @@ public class ReviewCommentDao {
         String timeStamp = formatter.format(today);
         reviewComment.createdAt = timeStamp;
 
-        reviewComments.stream()
+        MockReviewComments.stream()
                 .filter(curRecomment -> curRecomment.getReviewCommentId().equals(reviewCommentId))
                 .findAny()
                 .orElse(new ReviewComment(-1,-1,"","",null))
@@ -62,6 +61,6 @@ public class ReviewCommentDao {
     }
 
     public void deleteReviewComment(Integer reviewCommentId) {
-        reviewComments.removeIf(reviewComment -> reviewComment.getReviewCommentId().equals(reviewCommentId));
+        MockReviewComments.removeIf(reviewComment -> reviewComment.getReviewCommentId().equals(reviewCommentId));
     }
 }

@@ -1,6 +1,7 @@
 package com.example.firstproject.dao;
 
 import com.example.firstproject.model.User;
+import com.zaxxer.hikari.util.ConcurrentBag;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -9,7 +10,17 @@ import java.util.List;
 @Repository
 public class UserDao {
 
-    public static List<Integer> amooguna;
+    public List<Integer> Mock = new ArrayList<>();
+    {   Mock.add(1); Mock.add(2); Mock.add(3); }
+
+    public List<User> mockUsers = new ArrayList<>();
+    {
+        mockUsers.add(new User("testId1","testName1", "1234",Mock,Mock, Mock));
+        mockUsers.add(new User("testId2","testName2", "1234",Mock, Mock,Mock));
+        mockUsers.add(new User("testId3","testName3", "1234",Mock,Mock,Mock));
+    }
+
+    /*public static List<Integer> amooguna;
     static{
         amooguna = new ArrayList<>();
         amooguna.add(1); amooguna.add(2); amooguna.add(3);
@@ -23,16 +34,16 @@ public class UserDao {
         users.add(new User("testId1","testName1", "1234",amooguna,amooguna, amooguna));
         users.add(new User("testId2","testName2", "1234",amooguna, amooguna,amooguna));
         users.add(new User("testId3","testName3", "1234",amooguna,amooguna,amooguna));
-    }
+    }*/
 
     // Select all user.
     public List<User> getAllUsers() {
-        return users;
+        return mockUsers;
     }
 
     // Select one user by userId
     public User getUserByUserId(String userId) {
-        return users
+        return mockUsers
                 .stream()
                 .filter(user -> user.getUserId().equals(userId))
                 .findAny()
@@ -41,7 +52,7 @@ public class UserDao {
 
     // Insert User
     public User insertUser(User user) {
-        users.add(user);
+        mockUsers.add(user);
 
         return user;
     }
@@ -49,21 +60,21 @@ public class UserDao {
     // Modify User
     public void updateUser(String userId,User user) {
         // 유저가 저장한 맛집 수정 업뎃
-        users.stream()
+        mockUsers.stream()
                 .filter(curUser -> curUser.getUserId().equals(userId))
                 .findAny()
                 .orElse(new User("", "", "",null,null,null))
                 .setSaved_restaurants(user.getSaved_restaurants());
 
         // 유저가 생성한 themeId 수정 업뎃
-        users.stream()
+        mockUsers.stream()
                 .filter(curUser -> curUser.getUserId().equals(userId))
                 .findAny()
                 .orElse(new User("", "", "",null,null,null))
                 .setUserRegister_themeIds(user.userRegister_themeIds);
 
         // 유저가 하트누른 리뷰아이디 수정 업뎃
-        users.stream()
+        mockUsers.stream()
                 .filter(curUser -> curUser.getUserId().equals(userId))
                 .findAny()
                 .orElse(new User("", "", "",null,null,null))
@@ -72,6 +83,6 @@ public class UserDao {
 
     // Delete User
     public void deleteUser(String userId) {
-        users.removeIf(user -> user.getUserId().equals(userId));
+        mockUsers.removeIf(user -> user.getUserId().equals(userId));
     }
 }
