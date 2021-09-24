@@ -5,17 +5,27 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.*;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.util.List;
 
+@Entity
 @Getter
 @Setter
 @ToString
 public class Theme {
 
+    @Id
     private Integer themeId;
+    @Column
     private String themeName;
+    @Column
     private String userId;
+    @Column
     private Integer card_num;
+    @Transient
     public List<Integer> theme_cardIds;
 
     // request mapping을 통해 Json으로 받은 RequestBody를 rest Api 프로젝트의 dto객체 형식으로 변경할 수 있음

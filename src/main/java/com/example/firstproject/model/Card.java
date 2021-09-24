@@ -7,18 +7,27 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.List;
 
+@Entity
 @Getter
 @Setter
 @ToString
 public class Card {
 
+    @Id
     private Integer cardId;
+    @Column
     private String userId;
+    @Column
     public String createdAt;
+    @Transient
     public List<Integer> card_restaurantIds;
 
     @JsonCreator

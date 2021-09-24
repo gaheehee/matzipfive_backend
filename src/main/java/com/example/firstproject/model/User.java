@@ -8,19 +8,29 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.util.List;
 
+@Entity
 @Getter
 @Setter
 @ToString
 public class User {
 
+    @Id
     private String userId;
+    @Column
     private String userName;
+    @Column
     private String userPassword;
-    public List<Integer> saved_restaurants;
-    public List<Integer> userRegister_themeIds;
-    public List<Integer> user_heart_reviewIds;
+    @Transient
+    public List<Integer> savedRestaurants;
+    @Transient
+    public List<Integer> userRegisterThemeIds;
+    @Transient
+    public List<Integer> userHeartReviewIds;
 
     public User() {
     }
@@ -30,19 +40,19 @@ public class User {
     public User(@JsonProperty("userId") String userId,
                 @JsonProperty("userName")String userName,
                 @JsonProperty("userPassword") String userPassword,
-                @JsonProperty("saved_restaurants") List<Integer> saved_restaurants,
-                @JsonProperty("userRegister_themeIds") List<Integer> userRegister_themeIds,
-                @JsonProperty("user_heart_reviewIds") List<Integer> user_heart_reviewIds) {
+                @JsonProperty("savedRestaurants") List<Integer> savedRestaurants,
+                @JsonProperty("userRegisterThemeIds") List<Integer> userRegisterThemeIds,
+                @JsonProperty("userHeartReviewIds") List<Integer> userHeartReviewIds) {
 
         this.userId = userId;
         this.userName = userName;
         this.userPassword = userPassword;
-        this.saved_restaurants = saved_restaurants;
-        this.userRegister_themeIds = userRegister_themeIds;
-        this.user_heart_reviewIds = user_heart_reviewIds;
+        this.savedRestaurants = savedRestaurants;
+        this.userRegisterThemeIds = userRegisterThemeIds;
+        this.userHeartReviewIds = userHeartReviewIds;
     }
 
-    public String getUserId() {
+    /*public String getUserId() {
         return userId;
     }
 
@@ -56,27 +66,27 @@ public class User {
 
     public void setUserPassword(String userPassword) { this.userPassword = userPassword; }
 
-    public List<Integer> getSaved_restaurants() {
-        return saved_restaurants;
+    public List<Integer> getSavedRestaurants() {
+        return savedRestaurants;
     }
 
-    public List<Integer> getUserRegister_themeIds() {
-        return userRegister_themeIds;
+    public List<Integer> getUserRegisterThemeIds() {
+        return userRegisterThemeIds;
     }
 
-    public List<Integer> getUser_heart_reviewIds() {
-        return user_heart_reviewIds;
+    public List<Integer> getUserHeartReviewIds() {
+        return userHeartReviewIds;
     }
 
-    public void setSaved_restaurants(List<Integer> saved_restaurants) {
-        this.saved_restaurants = saved_restaurants;
+    public void setSavedRestaurants(List<Integer> savedRestaurants) {
+        this.savedRestaurants = savedRestaurants;
     }
 
-    public void setUserRegister_themeIds(List<Integer> userRegister_themeIds) {
-        this.userRegister_themeIds = userRegister_themeIds;
+    public void setUserRegisterThemeIds(List<Integer> userRegisterThemeIds) {
+        this.userRegisterThemeIds = userRegisterThemeIds;
     }
 
-    public void setUser_heart_reviewIds(List<Integer> user_heart_reviewIds) {
-        this.user_heart_reviewIds = user_heart_reviewIds;
-    }
+    public void setUserHeartReviewIds(List<Integer> userHeartReviewIds) {
+        this.userHeartReviewIds = userHeartReviewIds;
+    }*/
 }

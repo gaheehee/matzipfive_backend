@@ -64,21 +64,21 @@ public class UserDao {
                 .filter(curUser -> curUser.getUserId().equals(userId))
                 .findAny()
                 .orElse(new User("", "", "",null,null,null))
-                .setSaved_restaurants(user.getSaved_restaurants());
+                .setSavedRestaurants(user.getSavedRestaurants());
 
         // 유저가 생성한 themeId 수정 업뎃
         mockUsers.stream()
                 .filter(curUser -> curUser.getUserId().equals(userId))
                 .findAny()
                 .orElse(new User("", "", "",null,null,null))
-                .setUserRegister_themeIds(user.userRegister_themeIds);
+                .setUserRegisterThemeIds(user.userRegisterThemeIds);
 
         // 유저가 하트누른 리뷰아이디 수정 업뎃
         mockUsers.stream()
                 .filter(curUser -> curUser.getUserId().equals(userId))
                 .findAny()
                 .orElse(new User("", "", "",null,null,null))
-                .setUser_heart_reviewIds(user.getUser_heart_reviewIds());
+                .setUserHeartReviewIds(user.getUserHeartReviewIds());
     }
 
     // Delete User

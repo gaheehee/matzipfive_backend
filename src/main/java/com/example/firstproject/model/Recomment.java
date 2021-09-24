@@ -7,14 +7,23 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 @Getter
 @Setter
 @ToString
 public class Recomment {
 
+    @Column
     private Integer reviewCommentId;
+    @Id
     private Integer recommentId;
+    @Column
     private String comment;
+    @Column
     public String createdAt;
 
     @JsonCreator
