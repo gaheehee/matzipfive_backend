@@ -2,42 +2,41 @@ package com.example.firstproject.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
+@Entity(name = "review")
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 public class Review {
 
-    @Column
-    private Integer restaurantId;
     @Id
+    @Column(name = "review_id")
     private Integer reviewId;
-    @Column
+    @Column(name = "restaurant_id")
+    private Integer restaurantId;
+    @Column(name = "user_id")
     private String userId;
-    @Column
+    @Column(name = "content")
     private String content;
-    @Column
+    @Column(name = "heart_num")
     private Integer heart_num;
-    @Column
+    @Column(name = "created_at")
     public String createdAt;
 
     @JsonCreator
     @Builder
-    public Review(@JsonProperty("restaurantId") Integer restaurantId,
-                  @JsonProperty("reviewId") Integer reviewId,
-                  @JsonProperty("userId") String userId,
+    public Review(@JsonProperty("restaurant_id") Integer restaurantId,
+                  @JsonProperty("review_id") Integer reviewId,
+                  @JsonProperty("user_id") String userId,
                   @JsonProperty("content") String content,
                   @JsonProperty("heart_num") Integer heart_num,
-                  @JsonProperty("createAt") String createdAt) {
+                  @JsonProperty("created_at") String createdAt) {
 
         this.restaurantId = restaurantId;
         this.reviewId = reviewId;

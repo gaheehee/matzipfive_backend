@@ -1,8 +1,9 @@
 package com.example.firstproject.service;
 
-import com.example.firstproject.dao.ThemeDao;
 import com.example.firstproject.model.Theme;
-import com.example.firstproject.model.User;
+import com.example.firstproject.model.ThemeCardIds;
+import com.example.firstproject.repository.ThemeCardIdsRepository;
+import com.example.firstproject.repository.ThemeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,30 +13,41 @@ import java.util.List;
 public class ThemeService {
 
     @Autowired
-    ThemeDao themeDao;
+    ThemeRepository themeRepository;
+    @Autowired
+    ThemeCardIdsRepository themeCardIdsRepository;
 
     public List<Theme> getAllThemes() {
-        return themeDao.getAllThemes();
+        List<Theme> themes = themeRepository.findAll();
+        return themes;
     }
 
     public Theme getThemeByThemeId(Integer themeId) {
-        return themeDao.getThemeByThemeId(themeId);
+        return themeRepository.getById(themeId);
+
     }
 
-    public Theme getThemeByUserId(String userId) {
-        return themeDao.getThemeByUserId(userId);
+    public List<Theme> getThemeByUserId(String userId) {
+        List<Theme> themes = themeRepository.findAllByUserId(userId);
+        return themes;
     }
 
     public Theme registerTheme(Theme theme) {
-        return themeDao.insertTheme(theme);
+        themeRepository.save(theme);
+        return theme;
     }
 
     public void modifyTheme(Integer themeId, Theme theme) {
-        themeDao.updateTheme(themeId, theme);
+        themeRepository.save(theme);
     }
 
     public void removeTheme(Integer themeId) {
-        themeDao.deleteTheme(themeId);
+        themeRepository.deleteById(themeId);
     }
 
+    // 해당 테마 안의 카드들 정보
+    public List<ThemeCardIds> getAllCardsByThemeId(Integer themeId) {
+        List<ThemeCardIds> themeCardIds = themeCardIdsRepository.findAllByThemeId(themeId);
+        return themeCardIds;
+    }
 }

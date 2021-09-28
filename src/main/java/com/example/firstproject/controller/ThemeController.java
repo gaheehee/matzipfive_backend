@@ -1,6 +1,7 @@
 package com.example.firstproject.controller;
 
 import com.example.firstproject.model.Theme;
+import com.example.firstproject.model.ThemeCardIds;
 import com.example.firstproject.service.ThemeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,10 +25,11 @@ public class ThemeController {
         return themeService.getThemeByThemeId(themeId);
     }
 
-    /*@GetMapping("/{userId}")
-    public Theme getThemeByUserId(@PathVariable String userId) {
-        return themeService.getThemeByUserId(userId);
-    }*/
+    // 해당 테마 안의 카드들 정보
+    @GetMapping("/CardsInTheme/{themeId}")
+    public List<ThemeCardIds> getAllCardsByThemeId(@PathVariable Integer themeId){
+        return themeService.getAllCardsByThemeId(themeId);
+    }
 
     @PostMapping("")
     @ResponseBody   // 이거 없어도 되나?

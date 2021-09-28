@@ -2,57 +2,41 @@ package com.example.firstproject.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.util.List;
 
-@Entity
+
+//@Table(name = "user")
+@Entity(name = "user")
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 public class User {
 
     @Id
+    @Column(name = "user_id")
     private String userId;
-    @Column
+    @Column(name = "user_name")
     private String userName;
-    @Column
+    @Column(name = "user_password")
     private String userPassword;
-    @Transient
-    public List<Integer> savedRestaurants;
-    @Transient
-    public List<Integer> userRegisterThemeIds;
-    @Transient
-    public List<Integer> userHeartReviewIds;
 
-    public User() {
-    }
 
     @JsonCreator
     @Builder
-    public User(@JsonProperty("userId") String userId,
-                @JsonProperty("userName")String userName,
-                @JsonProperty("userPassword") String userPassword,
-                @JsonProperty("savedRestaurants") List<Integer> savedRestaurants,
-                @JsonProperty("userRegisterThemeIds") List<Integer> userRegisterThemeIds,
-                @JsonProperty("userHeartReviewIds") List<Integer> userHeartReviewIds) {
+    public User(@JsonProperty("user_id") String userId,
+                @JsonProperty("user_name")String userName,
+                @JsonProperty("user_password") String userPassword) {
 
         this.userId = userId;
         this.userName = userName;
         this.userPassword = userPassword;
-        this.savedRestaurants = savedRestaurants;
-        this.userRegisterThemeIds = userRegisterThemeIds;
-        this.userHeartReviewIds = userHeartReviewIds;
     }
 
-    /*public String getUserId() {
+    public String getUserId() {
         return userId;
     }
 
@@ -66,27 +50,4 @@ public class User {
 
     public void setUserPassword(String userPassword) { this.userPassword = userPassword; }
 
-    public List<Integer> getSavedRestaurants() {
-        return savedRestaurants;
-    }
-
-    public List<Integer> getUserRegisterThemeIds() {
-        return userRegisterThemeIds;
-    }
-
-    public List<Integer> getUserHeartReviewIds() {
-        return userHeartReviewIds;
-    }
-
-    public void setSavedRestaurants(List<Integer> savedRestaurants) {
-        this.savedRestaurants = savedRestaurants;
-    }
-
-    public void setUserRegisterThemeIds(List<Integer> userRegisterThemeIds) {
-        this.userRegisterThemeIds = userRegisterThemeIds;
-    }
-
-    public void setUserHeartReviewIds(List<Integer> userHeartReviewIds) {
-        this.userHeartReviewIds = userHeartReviewIds;
-    }*/
 }

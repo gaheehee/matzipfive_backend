@@ -1,6 +1,7 @@
 package com.example.firstproject.controller;
 
 import com.example.firstproject.model.Card;
+import com.example.firstproject.model.CardRestaurantIds;
 import com.example.firstproject.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,12 @@ public class CardController {
     @GetMapping("/{cardId}")
     public Card getCardByCardId(@PathVariable Integer cardId) {
         return cardService.getCardByCardId(cardId);
+    }
+
+    // 해당 카드에 저장된 맛집 id 정보
+    @GetMapping("/restaurantsInCard/{cardId}")
+    public List<CardRestaurantIds> getRestaurantsByCardId(@PathVariable Integer cardId){
+        return cardService.getRestaurantsByCardId(cardId);
     }
 
     @PostMapping("")

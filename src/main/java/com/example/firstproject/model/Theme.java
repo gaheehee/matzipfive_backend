@@ -11,38 +11,37 @@ import javax.persistence.Id;
 import javax.persistence.Transient;
 import java.util.List;
 
-@Entity
+@Entity(name = "theme")
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 public class Theme {
 
     @Id
+    @Column(name = "theme_id")
     private Integer themeId;
-    @Column
+    @Column(name = "theme_name")
     private String themeName;
-    @Column
+    @Column(name = "user_id")
     private String userId;
-    @Column
+    @Column(name = "card_num")
     private Integer card_num;
-    @Transient
-    public List<Integer> theme_cardIds;
+
 
     // request mapping을 통해 Json으로 받은 RequestBody를 rest Api 프로젝트의 dto객체 형식으로 변경할 수 있음
 
     @JsonCreator
     @Builder
-    public Theme(@JsonProperty("themeId") Integer themeId,
-                 @JsonProperty("themeName") String themeName,
-                 @JsonProperty("userId") String userId,
-                 @JsonProperty("card_num") Integer card_num,
-                 @JsonProperty("theme_cardIds") List<Integer> theme_cardIds) {
+    public Theme(@JsonProperty("theme_id") Integer themeId,
+                 @JsonProperty("theme_name") String themeName,
+                 @JsonProperty("user_id") String userId,
+                 @JsonProperty("card_num") Integer card_num) {
 
         this.themeId = themeId;
         this.themeName = themeName;
         this.userId = userId;
         this.card_num = card_num;
-        this.theme_cardIds = theme_cardIds;
     }
 
     public Integer getThemeId(){
@@ -77,11 +76,4 @@ public class Theme {
         this.card_num = card_num;
     }
 
-    public List<Integer> getTheme_cardIds() {
-        return theme_cardIds;
-    }
-
-    public void setTheme_cardIds(List<Integer> theme_cardIds) {
-        this.theme_cardIds = theme_cardIds;
-    }
 }

@@ -2,39 +2,42 @@ package com.example.firstproject.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
+@Entity(name = "recomment")
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 public class Recomment {
 
-    @Column
-    private Integer reviewCommentId;
     @Id
+    @Column(name = "recomment_id")
     private Integer recommentId;
-    @Column
+    @Column(name = "review_comment_id")
+    private Integer reviewCommentId;
+    @Column(name = "user_id")
+    private String userId;
+    @Column(name = "comment")
     private String comment;
-    @Column
+    @Column(name = "created_at")
     public String createdAt;
 
     @JsonCreator
     @Builder
-    public Recomment(@JsonProperty("reviewCommentId") Integer reviewCommentId,
-                     @JsonProperty("recommentId") Integer recommentId,
+    public Recomment(@JsonProperty("review_comment_id") Integer reviewCommentId,
+                     @JsonProperty("recomment_id") Integer recommentId,
+                     @JsonProperty("user_id") String userId,
                      @JsonProperty("comment") String comment,
-                     @JsonProperty("createdAt") String createdAt) {
+                     @JsonProperty("created_at") String createdAt) {
 
         this.reviewCommentId = reviewCommentId;
         this.recommentId = recommentId;
+        this.userId = userId;
         this.comment = comment;
         this.createdAt = createdAt;
     }
@@ -69,5 +72,13 @@ public class Recomment {
 
     public void setCreatedAt(String createAt) {
         this.createdAt = createAt;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

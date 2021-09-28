@@ -2,30 +2,29 @@ package com.example.firstproject.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
+@Entity(name = "review_comment")
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 public class ReviewComment {
 
-    @Column
-    private Integer reviewId;
     @Id
+    @Column(name = "review_comment_id")
     private Integer reviewCommentId;
-    @Column
+    @Column(name = "review_id")
+    private Integer reviewId;
+    @Column(name = "user_id")
     private String userId;
-    @Column
+    @Column(name = "comment")
     private String comment;
-    @Column
+    @Column(name = "created_at")
     public String createdAt;
 
     @JsonCreator

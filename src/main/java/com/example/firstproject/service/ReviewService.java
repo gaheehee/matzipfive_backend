@@ -1,7 +1,7 @@
 package com.example.firstproject.service;
 
-import com.example.firstproject.dao.ReviewDao;
 import com.example.firstproject.model.Review;
+import com.example.firstproject.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
@@ -13,30 +13,34 @@ import java.util.Map;
 public class ReviewService {
 
     @Autowired
-    ReviewDao reviewDao;
+    ReviewRepository reviewRepository;
 
     public List<Review> getAllReviews(){
-        return reviewDao.getAllReviews();
+        List<Review> reviews = reviewRepository.findAll();
+        return reviews;
     }
 
     public List<Review> getReviewsByRestaurantId(Integer restaurantId) {
-        return reviewDao.getReviewsByRestaurantId(restaurantId);
+        List<Review> reviews = reviewRepository.findAllByRestaurantId(restaurantId);
+        return reviews;
     }
 
     public List<Review> getReviewsByUserId(String userId) {
-        return reviewDao.getReviewsByUserId(userId);
+        List<Review> reviews = reviewRepository.findAllByUserId(userId);
+        return reviews;
     }
 
     public Review registerReview(Review review) {
-        return reviewDao.insertReview(review);
+        reviewRepository.save(review);
+        return review;
     }
 
     public void modifyReview(Integer reviewId, Review review) {
-        reviewDao.updateReview(reviewId, review);
+        reviewRepository.save(review);
     }
 
     public void removeReview(Integer reviewId) {
-        reviewDao.deleteReview(reviewId);
+        reviewRepository.deleteById(reviewId);
     }
 
 }

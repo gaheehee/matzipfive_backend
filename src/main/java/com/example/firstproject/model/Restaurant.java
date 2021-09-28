@@ -2,30 +2,29 @@ package com.example.firstproject.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
+@Entity(name = "restaurant")
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 public class Restaurant {
 
     @Id
+    @Column(name = "restaurant_id")
     private Integer restaurantId;
-    @Column
+    @Column(name = "restaurant_name")
     private String restaurantName;
 
     @JsonCreator
     @Builder
-    public Restaurant( @JsonProperty("restaurantId") Integer restaurantId,
-                       @JsonProperty("restaurantName") String restaurantName) {
+    public Restaurant( @JsonProperty("restaurant_id") Integer restaurantId,
+                       @JsonProperty("restaurant_name") String restaurantName) {
         this.restaurantId = restaurantId;
         this.restaurantName = restaurantName;
     }
@@ -38,5 +37,7 @@ public class Restaurant {
         return restaurantName;
     }
 
-
+    public void setRestaurantName(String restaurantName) {
+        this.restaurantName = restaurantName;
+    }
 }

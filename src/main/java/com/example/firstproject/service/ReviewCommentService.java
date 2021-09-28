@@ -1,7 +1,7 @@
 package com.example.firstproject.service;
 
-import com.example.firstproject.dao.ReviewCommentDao;
 import com.example.firstproject.model.ReviewComment;
+import com.example.firstproject.repository.ReviewCommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
@@ -12,25 +12,28 @@ import java.util.List;
 public class ReviewCommentService {
 
     @Autowired
-    ReviewCommentDao reviewCommentDao;
+    ReviewCommentRepository reviewCommentRepository;
 
     public List<ReviewComment> getAllReviewComments() {
-        return reviewCommentDao.getAllReviewComments();
+        List<ReviewComment> reviewComments = reviewCommentRepository.findAll();
+        return reviewComments;
     }
 
     public List<ReviewComment> getReviewCommentsByReviewId(Integer reviewId) {
-        return reviewCommentDao.getReviewCommentsByReviewId(reviewId);
+        List<ReviewComment> reviewComments = reviewCommentRepository.findAllByReviewId(reviewId);
+        return reviewComments;
     }
 
     public ReviewComment registerReviewComment(ReviewComment reviewComment) {
-        return reviewCommentDao.insertReviewComment(reviewComment);
+        reviewCommentRepository.save(reviewComment);
+        return reviewComment;
     }
 
     public void modifyReviewComment(Integer reviewCommentId, ReviewComment reviewComment) {
-        reviewCommentDao.updateReviewComment(reviewCommentId, reviewComment);
+        reviewCommentRepository.save(reviewComment);
     }
 
     public void removeReviewComment(Integer reviewCommentId) {
-        reviewCommentDao.deleteReviewComment(reviewCommentId);
+        reviewCommentRepository.deleteById(reviewCommentId);
     }
 }

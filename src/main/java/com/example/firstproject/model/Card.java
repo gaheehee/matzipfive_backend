@@ -2,45 +2,38 @@ package com.example.firstproject.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.List;
 
-@Entity
+@Entity(name = "card")
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 public class Card {
 
     @Id
+    @Column(name = "card_id")
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer cardId;
-    @Column
+    @Column(name = "user_id")
     private String userId;
-    @Column
+    @Column(name = "created_at")
     public String createdAt;
-    @Transient
-    public List<Integer> card_restaurantIds;
 
     @JsonCreator
     @Builder
-    public Card(@JsonProperty("cardId") Integer cardId,
-                @JsonProperty("userId") String userId,
-                @JsonProperty("createdAt") String createdAt,
-                @JsonProperty("card_restaurantIds") List<Integer> card_restaurantIds) {
+    public Card(@JsonProperty("card_id") Integer cardId,
+                @JsonProperty("user_id") String userId,
+                @JsonProperty("created_at") String createdAt) {
 
         this.cardId = cardId;
         this.userId = userId;
         this.createdAt = createdAt;
-        this.card_restaurantIds = card_restaurantIds;
     }
 
     public Integer getCardId() { return cardId; }
@@ -55,11 +48,4 @@ public class Card {
 
     public void setCreatedAt(String createdAt) { this.createdAt = createdAt; }
 
-    public List<Integer> getCard_restaurantIds() {
-        return card_restaurantIds;
-    }
-
-    public void setCard_restaurantIds(List<Integer> card_restaurantIds) {
-        this.card_restaurantIds = card_restaurantIds;
-    }
 }
