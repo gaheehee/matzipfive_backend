@@ -36,7 +36,7 @@ public class CardController {
         return cardService.registerCard(card);
     }
 
-    @PutMapping("/{cardId}")
+    @PutMapping("/{cardId}")    // 수정할 일 없을지도? 수정을 한다면 cardRestaurantIds 수정하겠지
     public void modifyCard(@PathVariable Integer cardId, @RequestBody Card card) {
         cardService.modifyCard(cardId, card);
     }
