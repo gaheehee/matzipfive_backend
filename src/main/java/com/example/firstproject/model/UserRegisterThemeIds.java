@@ -16,20 +16,16 @@ import javax.persistence.*;
 public class UserRegisterThemeIds {
 
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Integer id;
-    @Column(name = "user_id")
-    private String userId;
     @Column(name = "theme_id")
     private Integer themeId;
+    @Column(name = "user_id")
+    private String userId;
 
     @JsonCreator
     @Builder
-    public UserRegisterThemeIds(@JsonProperty("id") Integer id,
+    public UserRegisterThemeIds(
                                 @JsonProperty("user_id") String userId,
                                 @JsonProperty("theme_id") Integer themeId) {
-        this.id = id;
         this.userId = userId;
         this.themeId = themeId;
     }

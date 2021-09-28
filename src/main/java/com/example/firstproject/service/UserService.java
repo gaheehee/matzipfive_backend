@@ -67,15 +67,46 @@ public class UserService {
         return userRegisterThemeIds;
     }
 
-    // user가 누른 리뷰id 정보 리턴
+    // user가 테마 등록
+    public UserRegisterThemeIds insertRegisterTheme(UserRegisterThemeIds userRegisterThemeIds) {
+        return userRegisterThemeIdsRepository.save(userRegisterThemeIds);
+    }
+
+    // user가 등록한 특정 테마 삭제
+    public void removeRegisterThemeByThemeId(Integer themeId) {
+        userRegisterThemeIdsRepository.deleteByThemeId(themeId);
+    }
+
+    // user가 하트 누른 리뷰id 정보 리턴
     public List<UserHeartReviewIds> getHeartReviewsByUserId(String userId) {
         List<UserHeartReviewIds> userHeartReviewIds =  userHeartReviewIdsRepository.findAllByUserId(userId);
         return userHeartReviewIds;
+    }
+
+    // user가 리뷰에 하트 눌렀을때
+    public UserHeartReviewIds insertHeartReview(UserHeartReviewIds userHeartReviewIds) {
+        userHeartReviewIdsRepository.save(userHeartReviewIds);
+        return userHeartReviewIds;
+    }
+
+    // user가 리뷰 하트 누른거 취소
+    public void deleteHeartReviewByUserIdAndReviewId(String userId, Integer reviewId) {
+        userHeartReviewIdsRepository.deleteByUserIdAndReviewId(userId, reviewId);
     }
 
     // user가 저장한 맛집 id 정보 리턴
     public List<SavedRestaurants> getSavedRestaurantsByUserId(String userId) {
         List<SavedRestaurants> savedRestaurants = savedRestaurantsRepository.findAllByUserId(userId);
         return savedRestaurants;
+    }
+
+    // user가 저장한 맛집 추가
+    public SavedRestaurants insertSavedRestaurant(SavedRestaurants savedRestaurants) {
+        return savedRestaurantsRepository.save(savedRestaurants);
+    }
+
+    // user가 저장한 맛집 삭제
+    public void deleteSavedRestaurantByUserIdAndRestaurantId(String userId, Integer restaurantId) {
+        savedRestaurantsRepository.deleteByUserIdAndRestaurantId(userId, restaurantId);
     }
 }
