@@ -44,6 +44,7 @@ public class UserController {
         return userService.getSavedRestaurantsByUserId(userId);
     }
 
+    // 확인
     @PostMapping("")
     public User registerUser(@RequestBody User user) {
 
