@@ -6,12 +6,12 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Entity(name = "themecardids")
+@Entity(name = "theme_card")
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
-public class ThemeCardIds {
+public class ThemeCard {
 
     @Id
     @Column(name = "id")
@@ -24,9 +24,9 @@ public class ThemeCardIds {
 
     @JsonCreator
     @Builder
-    public ThemeCardIds(@JsonProperty("id") Integer id,
-                        @JsonProperty("theme_id") Integer themeId,
-                        @JsonProperty("card_id") Integer cardId) {
+    public ThemeCard(@JsonProperty("id") Integer id,
+                     @JsonProperty("theme_id") Integer themeId,
+                     @JsonProperty("card_id") Integer cardId) {
         this.id = id;
         this.themeId = themeId;
         this.cardId = cardId;

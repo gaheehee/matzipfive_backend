@@ -8,12 +8,12 @@ import javax.persistence.*;
 
 // user가 등록한 테마id
 
-@Entity(name = "userregisterthemeids")
+@Entity(name = "user_registered_theme")
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
-public class UserRegisterThemeIds {
+public class UserRegisteredTheme {
 
     @Id
     @Column(name = "theme_id")
@@ -23,9 +23,9 @@ public class UserRegisterThemeIds {
 
     @JsonCreator
     @Builder
-    public UserRegisterThemeIds(
-                                @JsonProperty("user_id") String userId,
-                                @JsonProperty("theme_id") Integer themeId) {
+    public UserRegisteredTheme(
+            @JsonProperty("user_id") String userId,
+            @JsonProperty("theme_id") Integer themeId) {
         this.userId = userId;
         this.themeId = themeId;
     }

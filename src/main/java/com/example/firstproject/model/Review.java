@@ -4,9 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity(name = "review")
 @Getter
@@ -17,6 +15,7 @@ public class Review {
 
     @Id
     @Column(name = "review_id")
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer reviewId;
     @Column(name = "restaurant_id")
     private Integer restaurantId;
@@ -25,7 +24,7 @@ public class Review {
     @Column(name = "content")
     private String content;
     @Column(name = "heart_num")
-    private Integer heart_num;
+    private Integer heartNum;
     @Column(name = "created_at")
     public String createdAt;
 
@@ -35,62 +34,15 @@ public class Review {
                   @JsonProperty("review_id") Integer reviewId,
                   @JsonProperty("user_id") String userId,
                   @JsonProperty("content") String content,
-                  @JsonProperty("heart_num") Integer heart_num,
+                  @JsonProperty("heart_num") Integer heartNum,
                   @JsonProperty("created_at") String createdAt) {
 
         this.restaurantId = restaurantId;
         this.reviewId = reviewId;
         this.userId = userId;
         this.content = content;
-        this.heart_num = heart_num;
+        this.heartNum = heartNum;
         this.createdAt = createdAt;
     }
 
-    public Integer getReviewId() {
-        return reviewId;
-    }
-
-    public Integer getRestaurantId() {
-        return restaurantId;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public Integer getHeart_num() {
-        return heart_num;
-    }
-
-    public String getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setReviewId(Integer reviewId) {
-        this.reviewId = reviewId;
-    }
-
-    public void setRestaurantId(Integer restaurantId) {
-        this.restaurantId = restaurantId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public void setHeart_num(Integer heart_num) {
-        this.heart_num = heart_num;
-    }
-
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
 }

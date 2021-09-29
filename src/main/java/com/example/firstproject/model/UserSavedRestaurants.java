@@ -6,12 +6,12 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Entity(name = "saved_restaurants")
+@Entity(name = "user_saved_restaurants")
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
-public class SavedRestaurants {
+public class UserSavedRestaurants {
 
     @Id
     @Column(name = "id")
@@ -24,9 +24,9 @@ public class SavedRestaurants {
 
     @JsonCreator
     @Builder
-    public SavedRestaurants(@JsonProperty("id") Integer id,
-                            @JsonProperty("user_id") String userId,
-                            @JsonProperty("restaurant_id") Integer restaurantId) {
+    public UserSavedRestaurants(@JsonProperty("id") Integer id,
+                                @JsonProperty("user_id") String userId,
+                                @JsonProperty("restaurant_id") Integer restaurantId) {
         this.id = id;
         this.userId = userId;
         this.restaurantId = restaurantId;
