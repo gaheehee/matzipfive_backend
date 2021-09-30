@@ -17,8 +17,8 @@ public class Review {
     @Column(name = "review_id")
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer reviewId;
-    @Column(name = "restaurant_id")
-    private Integer restaurantId;
+    //@Column(name = "restaurant_id")
+    //private Integer restaurantId;
     @Column(name = "user_id")
     private String userId;
     @Column(name = "content")
@@ -28,16 +28,21 @@ public class Review {
     @Column(name = "created_at")
     public String createdAt;
 
+
+    @ManyToOne
+    @JoinColumn(name = "restaurant_id")
+    private Restaurant restaurant;
+
     @JsonCreator
     @Builder
-    public Review(@JsonProperty("restaurant_id") Integer restaurantId,
+    public Review(
                   @JsonProperty("review_id") Integer reviewId,
                   @JsonProperty("user_id") String userId,
                   @JsonProperty("content") String content,
                   @JsonProperty("heart_num") Integer heartNum,
                   @JsonProperty("created_at") String createdAt) {
 
-        this.restaurantId = restaurantId;
+        //this.restaurantId = restaurantId;
         this.reviewId = reviewId;
         this.userId = userId;
         this.content = content;

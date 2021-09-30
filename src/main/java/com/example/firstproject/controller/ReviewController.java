@@ -20,27 +20,27 @@ public class ReviewController {
         return reviewService.getAllReviews();
     }
 
-    @GetMapping("/{restaurantId}")
+    @GetMapping("/restaurantReviews/{restaurantId}")
     public List<Review> getAllReviewsByRestaurantId(@PathVariable Integer restaurantId) {
         return reviewService.getReviewsByRestaurantId(restaurantId);
     }
 
-    @GetMapping("/{restaurantId}/{reviewId}/{userId}")
+    @GetMapping("/myReviews/{userId}")
     public List<Review> getReviewsByUserId(@PathVariable String userId) {
         return reviewService.getReviewsByUserId(userId);
     }
 
-    @PostMapping("")
-    public Review registerReview(@RequestBody Review review) {
-        return reviewService.registerReview(review);
+    @PostMapping("/registration/{restaurantId}")
+    public Review registerReview(@PathVariable Integer restaurantId, @RequestBody Review review) {
+        return reviewService.registerReview(restaurantId, review);
     }
 
-    @PutMapping("/{restaurantId}/{reviewId}")
+    @PutMapping("/{reviewId}")
     public void modifyReview(@PathVariable Integer reviewId, @RequestBody Review review) {
         reviewService.modifyReview(reviewId, review);
     }
 
-    @DeleteMapping("/{restaurantId}/{reviewId}")
+    @DeleteMapping("/{reviewId}")
     public void removeReview(@PathVariable Integer reviewId) {
         reviewService.removeReview(reviewId);
     }

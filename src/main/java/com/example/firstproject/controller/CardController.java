@@ -1,7 +1,7 @@
 package com.example.firstproject.controller;
 
 import com.example.firstproject.model.Card;
-import com.example.firstproject.model.CardRestaurantIds;
+//import com.example.firstproject.model.CardRestaurants;
 import com.example.firstproject.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,10 +25,10 @@ public class CardController {
         return cardService.getCardByCardId(cardId);
     }
 
-    // 해당 카드에 저장된 맛집 id 정보
-    @GetMapping("/restaurantsInCard/{cardId}")
-    public List<CardRestaurantIds> getRestaurantsByCardId(@PathVariable Integer cardId){
-        return cardService.getRestaurantsByCardId(cardId);
+    // 해당 테마에 등록된 카드들 가져오기
+    @GetMapping("cardsByTheme/{themeId}")
+    public List<Card> getCardsByThemeId(@PathVariable Integer themeId){
+        return cardService.getCardsByThemeId(themeId);
     }
 
     @PostMapping("")
@@ -36,15 +36,26 @@ public class CardController {
         return cardService.registerCard(card);
     }
 
-    @PutMapping("/{cardId}")    // 수정할 일 없을지도? 수정을 한다면 cardRestaurantIds 수정하겠지
-    public void modifyCard(@PathVariable Integer cardId, @RequestBody Card card) {
-        cardService.modifyCard(cardId, card);
-    }
-
     @DeleteMapping("/{cardId}")
     public void removeCard(@PathVariable Integer cardId ) {
         cardService.removeCard(cardId);
     }
 
+    //card에 맛집 추가하기 - card_restaurant에 정보저장
+    @PutMapping("/{cardId}/{restaurantId}")
+    public void addRestaurantInCard(@PathVariable Integer cardId, @PathVariable Integer restaurantId) {
+        cardService.addRestaurantInCard(cardId, restaurantId);
+    }
 
+    // 해당 card에서 해당 맛집 삭제
+    @DeleteMapping("/{cardId}/{restaurantId}")
+    public void removeRestaurantInCard(@PathVariable Integer cardId, @PathVariable Integer restaurantId){
+        cardService.removeRestaurantInCard(cardId, restaurantId);
+    }
+
+    // 해당 카드에 저장된 맛집 id 정보
+    /*@GetMapping("/restaurantsInCard/{cardId}")
+    public List<CardRestaurants> getRestaurantsByCardId(@PathVariable Integer cardId){
+        return cardService.getRestaurantsByCardId(cardId);
+    }*/
 }

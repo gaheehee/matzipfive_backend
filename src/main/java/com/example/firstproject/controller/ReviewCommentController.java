@@ -19,22 +19,22 @@ public class ReviewCommentController {
         return reviewCommentService.getAllReviewComments();
     }
 
-    @GetMapping("/{reviewId}")
+    @GetMapping("/reviewCommentsInReview/{reviewId}")
     public List<ReviewComment> getReviewCommentsByReviewId(@PathVariable Integer reviewId) {
         return reviewCommentService.getReviewCommentsByReviewId(reviewId);
     }
 
-    @PostMapping("")
-    public ReviewComment registerReviewComment(@RequestBody ReviewComment reviewComment) {
-        return reviewCommentService.registerReviewComment(reviewComment);
+    @PostMapping("/registration/{reviewId}")
+    public ReviewComment registerReviewComment(@PathVariable Integer reviewId, @RequestBody ReviewComment reviewComment) {
+        return reviewCommentService.registerReviewComment(reviewId, reviewComment);
     }
 
-    @PutMapping("/{reviewId}/{reviewCommentId}")
+    @PutMapping("/{reviewCommentId}")
     public void modifyReviewComment(@PathVariable Integer reviewCommentId, @RequestBody ReviewComment reviewComment) {
         reviewCommentService.modifyReviewComment(reviewCommentId, reviewComment);
     }
 
-    @DeleteMapping("/{reviewId}/{reviewCommentId}")
+    @DeleteMapping("/{reviewCommentId}")
     public void removeReviewComment(@PathVariable Integer reviewCommentId) {
         reviewCommentService.removeReviewComment(reviewCommentId);
     }

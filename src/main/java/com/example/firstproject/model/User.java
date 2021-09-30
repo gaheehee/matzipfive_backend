@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -23,6 +24,9 @@ public class User {
     private String userName;
     @Column(name = "user_password")
     private String userPassword;
+
+    @OneToMany(mappedBy = "user")
+    private List<Theme> themes =new ArrayList<>();
 
 
     @JsonCreator

@@ -24,9 +24,9 @@ public class RecommentController {
         return recommentService.getRecommentByReviewCommentId(reviewCommentId);
     }
 
-    @PostMapping("")
-    public Recomment registerRecomment(@RequestBody Recomment recomment) {
-        return recommentService.registerRecomment(recomment);
+    @PostMapping("/registration/{reviewCommentId}")
+    public Recomment registerRecomment(@PathVariable Integer reviewCommentId ,@RequestBody Recomment recomment) {
+        return recommentService.registerRecomment(reviewCommentId, recomment);
     }
 
     @PutMapping("/{reviewCommentId}/{recommentId}")

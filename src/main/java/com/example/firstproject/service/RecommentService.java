@@ -2,6 +2,8 @@ package com.example.firstproject.service;
 
 import com.example.firstproject.model.Recomment;
 import com.example.firstproject.repository.RecommentRepository;
+import com.example.firstproject.repository.ReviewCommentRepository;
+import io.swagger.annotations.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +15,8 @@ public class RecommentService {
 
     @Autowired
     RecommentRepository recommentRepository;
+    @Autowired
+    ReviewCommentRepository reviewCommentRepository;
 
     public List<Recomment> getAllRecomments() {
         List<Recomment> recomments = recommentRepository.findAll();
@@ -23,7 +27,8 @@ public class RecommentService {
         return recommentRepository.getById(reviewCommentId);
     }
 
-    public Recomment registerRecomment(Recomment recomment) {
+    public Recomment registerRecomment(Integer reviewCommentId, Recomment recomment) {
+        recomment.setReviewComment(reviewCommentRepository.getById(reviewCommentId));
         recommentRepository.save(recomment);
         return recomment;
     }

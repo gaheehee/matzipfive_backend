@@ -1,9 +1,9 @@
 package com.example.firstproject.service;
 
 import com.example.firstproject.model.Theme;
-import com.example.firstproject.model.ThemeCardIds;
+//import com.example.firstproject.model.ThemeCard;
 import com.example.firstproject.repository.CardRepository;
-import com.example.firstproject.repository.ThemeCardIdsRepository;
+//import com.example.firstproject.repository.ThemeCardRepository;
 import com.example.firstproject.repository.ThemeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +15,8 @@ public class ThemeService {
 
     @Autowired
     ThemeRepository themeRepository;
-    @Autowired
-    ThemeCardIdsRepository themeCardIdsRepository;
+    /*@Autowired
+    ThemeCardRepository themeCardRepository;*/
     @Autowired
     CardRepository cardRepository;
 
@@ -30,6 +30,7 @@ public class ThemeService {
 
     }
 
+    // 해당 user가 등록한 테마들 가져오기
     public List<Theme> getThemeByUserId(String userId) {
         List<Theme> themes = themeRepository.findAllByUserId(userId);
         return themes;
@@ -53,8 +54,8 @@ public class ThemeService {
     }
 
     // 해당 테마 안의 카드들 정보
-    public List<ThemeCardIds> getAllCardsByThemeId(Integer themeId) {
-        List<ThemeCardIds> themeCardIds = themeCardIdsRepository.findAllByThemeId(themeId);
-        return themeCardIds;
-    }
+    /*public List<ThemeCard> getAllCardsByThemeId(Integer themeId) {
+        List<ThemeCard> themeCard = themeCardRepository.findAllByThemeId(themeId);
+        return themeCard;
+    }*/
 }

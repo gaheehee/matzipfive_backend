@@ -1,6 +1,7 @@
 package com.example.firstproject.service;
 
 import com.example.firstproject.model.Review;
+import com.example.firstproject.repository.RestaurantRepository;
 import com.example.firstproject.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,8 @@ public class ReviewService {
 
     @Autowired
     ReviewRepository reviewRepository;
+    @Autowired
+    RestaurantRepository restaurantRepository;
 
     public List<Review> getAllReviews(){
         List<Review> reviews = reviewRepository.findAll();
@@ -32,12 +35,13 @@ public class ReviewService {
         return reviews;
     }
 
-    public Review registerReview(Review review) {
+    public Review registerReview(Integer restaurantId, Review review) {
         Date today = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy'년' MM'월' dd'일', a hh:mm");
         String timeStamp = formatter.format(today);
 
         review.createdAt = timeStamp;
+        review.setRestaurant(restaurantRepository.getById(restaurantId));
         reviewRepository.save(review);
         return review;
     }

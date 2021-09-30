@@ -4,9 +4,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "restaurant")
 @Getter
@@ -21,6 +21,13 @@ public class Restaurant {
     @Column(name = "restaurant_name")
     private String restaurantName;
 
+    /*@ManyToMany
+    @JoinTable(name = "card_restaurant",
+    joinColumns = @JoinColumn(name = "restaurant_id"),
+    inverseJoinColumns = @JoinColumn(name = "card_id"))
+    private List<Card> card = new ArrayList<>();*/
+
+
     @JsonCreator
     @Builder
     public Restaurant( @JsonProperty("restaurant_id") Integer restaurantId,
@@ -29,15 +36,4 @@ public class Restaurant {
         this.restaurantName = restaurantName;
     }
 
-    public Integer getRestaurantId() { return restaurantId; }
-
-    public void setRestaurantId(Integer restaurantId) { this.restaurantId = restaurantId; }
-
-    public String getRestaurantName() {
-        return restaurantName;
-    }
-
-    public void setRestaurantName(String restaurantName) {
-        this.restaurantName = restaurantName;
-    }
 }

@@ -1,8 +1,7 @@
 package com.example.firstproject.controller;
 
 import com.example.firstproject.model.Theme;
-import com.example.firstproject.model.ThemeCardIds;
-import com.example.firstproject.service.CardService;
+//import com.example.firstproject.model.ThemeCard;
 import com.example.firstproject.service.ThemeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +29,12 @@ public class ThemeController {
         return themeService.getThemeByThemeId(themeId);
     }
 
+    // 해당 user가 등록한 테마들 가져오기
+    @GetMapping("themesByUser/{userId}")
+    public List<Theme> getThemeByUserId(@PathVariable String userId){
+        return themeService.getThemeByUserId(userId);
+    }
+
     //새 테마 생성
     @PostMapping("")
     public Theme registerTheme(@RequestBody Theme theme) {
@@ -49,8 +54,8 @@ public class ThemeController {
     }
 
     //해당 테마에 등록된 카드id 정보 가져오기
-    @GetMapping("/CardsInTheme/{themeId}")
-    public List<ThemeCardIds> getAllCardsByThemeId(@PathVariable Integer themeId){
+    /*@GetMapping("/CardsInTheme/{themeId}")
+    public List<ThemeCard> getAllCardsByThemeId(@PathVariable Integer themeId){
         return themeService.getAllCardsByThemeId(themeId);
-    }
+    }*/
 }
