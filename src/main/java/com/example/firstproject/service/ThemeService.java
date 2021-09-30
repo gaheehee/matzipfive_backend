@@ -5,6 +5,7 @@ import com.example.firstproject.model.Theme;
 import com.example.firstproject.repository.CardRepository;
 //import com.example.firstproject.repository.ThemeCardRepository;
 import com.example.firstproject.repository.ThemeRepository;
+import com.example.firstproject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,8 @@ public class ThemeService {
 
     @Autowired
     ThemeRepository themeRepository;
+    @Autowired
+    UserRepository userRepository;
     /*@Autowired
     ThemeCardRepository themeCardRepository;*/
     @Autowired
@@ -32,7 +35,7 @@ public class ThemeService {
 
     // 해당 user가 등록한 테마들 가져오기
     public List<Theme> getThemeByUserId(String userId) {
-        List<Theme> themes = themeRepository.findAllByUserId(userId);
+        List<Theme> themes = themeRepository.findAllByUser(userRepository.getById(userId));
         return themes;
     }
 

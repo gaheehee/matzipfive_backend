@@ -26,7 +26,7 @@ public class ReviewService {
     }
 
     public List<Review> getReviewsByRestaurantId(Integer restaurantId) {
-        List<Review> reviews = reviewRepository.findAllByRestaurantId(restaurantId);
+        List<Review> reviews = reviewRepository.findAllByRestaurant(restaurantRepository.getById(restaurantId));
         return reviews;
     }
 

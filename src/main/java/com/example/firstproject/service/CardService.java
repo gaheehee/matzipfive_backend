@@ -4,6 +4,7 @@ import com.example.firstproject.model.Card;
 import com.example.firstproject.model.CardRestaurant;
 import com.example.firstproject.repository.CardRepository;
 import com.example.firstproject.repository.CardRestaurantRepository;
+import com.example.firstproject.repository.ThemeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,8 @@ public class CardService {
     CardRepository cardRepository;
     @Autowired
     CardRestaurantRepository cardRestaurantRepository;
+    @Autowired
+    ThemeRepository themeRepository;
 
     public List<Card> getAllCards() {
         List<Card> cards = cardRepository.findAll();
@@ -31,9 +34,13 @@ public class CardService {
 
     // 해당 테마에 등록된 카드들 가져오기
     public List<Card> getCardsByThemeId(Integer themeId){
-        List<Card> cards = cardRepository.findAllByThemeId(themeId);
+        List<Card> cards = cardRepository.findAllByTheme(themeRepository.getById(themeId));
         return cards;
     }
+    /*public List<Card> getCardsByThemeId(Integer themeId){
+        List<Card> cards = cardRepository.findAllByThemeId(themeId);
+        return cards;
+    }*/
 
     public Card registerCard(Card card) {
         Date today = new Date();
@@ -65,7 +72,7 @@ public class CardService {
 
     // 카드 안의 해당 맛집 삭제
     public void removeRestaurantInCard(Integer cardId, Integer restaurantId) {
-        cardRestaurantRepository.deleteByCardIdAndRestaurantId(cardId, restaurantId);
+        cardRestaurantRepository.deleteByCardAndRestaurantId(cardRepository.getById(cardId), restaurantId);
     }
 
     // 해당 카드에 저장된 맛집 id 정보

@@ -23,7 +23,7 @@ public class ReviewCommentService {
     }
 
     public List<ReviewComment> getReviewCommentsByReviewId(Integer reviewId) {
-        List<ReviewComment> reviewComments = reviewCommentRepository.findAllByReviewId(reviewId);
+        List<ReviewComment> reviewComments = reviewCommentRepository.findAllByReview(reviewRepository.getById(reviewId));
         return reviewComments;
     }
 
