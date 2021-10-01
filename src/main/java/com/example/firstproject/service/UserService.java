@@ -11,9 +11,10 @@ import com.example.firstproject.repository.UserHeartReviewRepository;
 //import com.example.firstproject.repository.UserRegisteredThemeRepository;
 import com.example.firstproject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,6 +32,10 @@ public class UserService {
     @Autowired
     ReviewRepository reviewRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+
     // Select all user.
     public List<User> getAllUsers() {
         List<User> users = userRepository.findAll();
@@ -46,7 +51,9 @@ public class UserService {
     }
 
     // Insert User
+    @Transactional
     public User registerUser(User user) {
+        user.setUserPassword(passwordEncoder.encode(user.getUserPassword()));
         userRepository.save(user);
         return user;
     }
@@ -122,6 +129,15 @@ public class UserService {
     // user가 저장한 맛집 삭제
     public void deleteSavedRestaurantByUserIdAndRestaurantId(String userId, Integer restaurantId) {
         savedRestaurantsRepository.deleteByUserIdAndRestaurantId(userId, restaurantId);
+    }
+
+    public Boolean comparePassword(User user) {
+        User realUser = userRepository.getById(user.getUserId());
+
+        if (passwordEncoder.matches(user.getUserPassword(), realUser.getUserPassword())) {
+            return true;
+        }
+        return false;
     }
 
     // user가 등록한 테마id 정보 리턴

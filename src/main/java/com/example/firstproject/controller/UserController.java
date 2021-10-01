@@ -22,6 +22,11 @@ public class UserController {
         return userService.getAllUsers();
     }
 
+    @GetMapping("/login")
+    public Boolean comparePassword(@RequestBody User user) {
+        return userService.comparePassword(user);
+    }
+
     @GetMapping("/{userId}")
     public User getUserByUserId(@PathVariable  String userId) {
         return userService.getUserByUserId(userId);

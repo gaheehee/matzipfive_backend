@@ -13,24 +13,20 @@ repositories {
 }
 
 dependencies {
-	// lombok
+	//lombok
 	implementation 'org.projectlombok:lombok'
+
+	//PasswordEncoder 의존성 주입
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 
 	//jackson for request result to json
 	//responsebody -> json
 	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.0'
-	// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations
 	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.11.0'
 
 	//swagger 의존성 추가
 	implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
 	implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
-	//implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
-	//implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
-
-	// 롬복 추가
-	//compileOnly 'org.projectlombok:lombok'
-	//annotationProcessor 'org.projectlombok:lombok'
 
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-mustache'
