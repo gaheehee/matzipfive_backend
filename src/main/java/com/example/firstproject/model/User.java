@@ -1,17 +1,11 @@
 package com.example.firstproject.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 
-//@Table(name = "user")
 @Entity(name = "user")
 //@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
 @Getter
@@ -28,9 +22,6 @@ public class User {
     @Column(name = "user_password")
     private String userPassword;
 
-    //@OneToMany(mappedBy = "user")
-    //private List<Theme> themes =new ArrayList<>();
-
 
     @JsonCreator
     @Builder
@@ -42,19 +33,5 @@ public class User {
         this.userName = userName;
         this.userPassword = userPassword;
     }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) { this.userId = userId; }
-
-    public String getUserName() { return userName; }
-
-    public void setUserName(String userName) { this.userName = userName; }
-
-    public String getUserPassword() { return userPassword; }
-
-    public void setUserPassword(String userPassword) { this.userPassword = userPassword; }
 
 }

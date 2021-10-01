@@ -1,6 +1,5 @@
 package com.example.firstproject.service;
 
-import com.example.firstproject.model.Card;
 import com.example.firstproject.model.Recomment;
 import com.example.firstproject.model.ReviewComment;
 import com.example.firstproject.repository.RecommentRepository;
@@ -8,13 +7,10 @@ import com.example.firstproject.repository.ReviewCommentRepository;
 import com.example.firstproject.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ReviewCommentService {
@@ -26,13 +22,15 @@ public class ReviewCommentService {
     @Autowired
     RecommentRepository recommentRepository;
 
+
     public List<ReviewComment> getAllReviewComments() {
         List<ReviewComment> reviewComments = reviewCommentRepository.findAll();
         return reviewComments;
     }
 
     public List<ReviewComment> getReviewCommentsByReviewId(Integer reviewId) {
-        List<ReviewComment> reviewComments = reviewCommentRepository.findAllByReview(reviewRepository.getById(reviewId));
+        List<ReviewComment> reviewComments = reviewCommentRepository
+                .findAllByReview(reviewRepository.getById(reviewId));
         return reviewComments;
     }
 
@@ -47,21 +45,20 @@ public class ReviewCommentService {
         return reviewComment;
     }
 
-    public void modifyReviewComment(Integer reviewCommentId, ReviewComment reviewComment) {
+    public void modifyReviewComment(ReviewComment reviewComment) {
         reviewCommentRepository.save(reviewComment);
     }
 
-    // reviewComment 지워지면 해당 reviewComment 밑에 있는 recomment들도 지워져야함
     public void removeReviewComment(Integer reviewCommentId) {
         List<Recomment> recommentList = recommentRepository
                 .findByReviewComment(reviewCommentRepository.findById(reviewCommentId));
 
-        Recomment temp = new Recomment();
+        Recomment temp;
+
         for(int i=0; i < recommentList.size(); i++){
             temp = recommentList.get(i);
             recommentRepository.deleteById(temp.getRecommentId());
         }
-
         reviewCommentRepository.deleteById(reviewCommentId);
     }
 }

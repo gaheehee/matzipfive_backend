@@ -2,7 +2,6 @@ package com.example.firstproject.repository;
 
 import com.example.firstproject.model.Restaurant;
 import com.example.firstproject.model.Review;
-import com.example.firstproject.model.UserHeartReview;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -3,7 +3,6 @@ package com.example.firstproject.model;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
-
 import javax.persistence.*;
 
 @Entity(name = "review_comment")

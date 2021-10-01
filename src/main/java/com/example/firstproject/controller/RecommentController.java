@@ -14,27 +14,31 @@ public class RecommentController {
     @Autowired
     RecommentService recommentService;
 
-    @GetMapping("") //얘 필요없음
+    // 모든 recomment 가져오기
+    @GetMapping("")
     public List<Recomment> getAllRecomments() {
         return recommentService.getAllRecomments();
     }
 
-    // reviewComment에 달린 recomment들 가져오기
+    // 특정 reviewComment에 달린 recomment들 가져오기
     @GetMapping("/{reviewCommentId}")
     public Recomment getRecommentByReviewCommentId(@PathVariable Integer reviewCommentId) {
         return recommentService.getRecommentByReviewCommentId(reviewCommentId);
     }
 
+    // 특정 reviewComment에 recomment(대댓글) 달기
     @PostMapping("/registration/{reviewCommentId}")
     public Recomment registerRecomment(@PathVariable Integer reviewCommentId ,@RequestBody Recomment recomment) {
         return recommentService.registerRecomment(reviewCommentId, recomment);
     }
 
+    // 특정 recomment 수정
     @PutMapping("/{recommentId}")
-    public void modifyRecomment(@PathVariable Integer recommentId, @RequestBody Recomment recomment) {
-        recommentService.modifyRecomment(recommentId, recomment);
+    public void modifyRecomment(@RequestBody Recomment recomment) {
+        recommentService.modifyRecomment(recomment);
     }
 
+    // 특정 recomment 삭제
     @DeleteMapping("/{recommentId}")
     public void removeRecomment(@PathVariable Integer recommentId) {
         recommentService.removeRecomment(recommentId);

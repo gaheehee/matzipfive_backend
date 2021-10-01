@@ -18,6 +18,7 @@ public class ThemeController {
     public ThemeController() {
     }
 
+    // 모든 theme 가져오기
     @GetMapping("")
     public List<Theme> getAllThemes() {
         return themeService.getAllThemes();
@@ -29,7 +30,7 @@ public class ThemeController {
         return themeService.getThemeByThemeId(themeId);
     }
 
-    // 해당 user가 등록한 테마들 가져오기
+    // 특정 user가 등록한 테마들 가져오기
     @GetMapping("/themesByUser/{userId}")
     public List<Theme> getThemeByUserId(@PathVariable String userId){
         return themeService.getThemeByUserId(userId);
@@ -41,10 +42,10 @@ public class ThemeController {
         return themeService.registerTheme(theme);
     }
 
-    //테마 정보 변경 -> 쓰일 일이 없을듯
+    //테마 정보 변경 -> 쓸 일이 없을듯
     @PutMapping("/{themeId}")
-    public void modifyTheme(@PathVariable Integer themeId, @RequestBody Theme theme) {
-        themeService.modifyTheme(themeId, theme);
+    public void modifyTheme(@RequestBody Theme theme) {
+        themeService.modifyTheme(theme);
     }
 
     //테마 삭제

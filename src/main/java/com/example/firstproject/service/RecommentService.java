@@ -3,10 +3,8 @@ package com.example.firstproject.service;
 import com.example.firstproject.model.Recomment;
 import com.example.firstproject.repository.RecommentRepository;
 import com.example.firstproject.repository.ReviewCommentRepository;
-import io.swagger.annotations.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -42,7 +40,7 @@ public class RecommentService {
 
     }
 
-    public void modifyRecomment(Integer recommentId, Recomment recomment) {
+    public void modifyRecomment(Recomment recomment) {
         recommentRepository.save(recomment);
     }
 

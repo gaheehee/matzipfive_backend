@@ -9,13 +9,10 @@ import com.example.firstproject.repository.ReviewCommentRepository;
 import com.example.firstproject.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class ReviewService {
@@ -29,13 +26,15 @@ public class ReviewService {
     @Autowired
     RecommentRepository recommentRepository;
 
+
     public List<Review> getAllReviews(){
         List<Review> reviews = reviewRepository.findAll();
         return reviews;
     }
 
     public List<Review> getReviewsByRestaurantId(Integer restaurantId) {
-        List<Review> reviews = reviewRepository.findAllByRestaurant(restaurantRepository.getById(restaurantId));
+        List<Review> reviews = reviewRepository
+                .findAllByRestaurant(restaurantRepository.getById(restaurantId));
         return reviews;
     }
 
@@ -51,6 +50,7 @@ public class ReviewService {
 
         review.createdAt = timeStamp;
         review.setRestaurant(restaurantRepository.getById(restaurantId));
+
         reviewRepository.save(review);
         return review;
     }
@@ -59,7 +59,6 @@ public class ReviewService {
         reviewRepository.save(review);
     }
 
-    // 리뷰 지워지면, 리뷰에 달린 대대댓글들 다 지워져야함!
     public void removeReview(Integer reviewId) {
         List<ReviewComment> reviewCommentList = reviewCommentRepository
                 .findByReview(reviewRepository.findById(reviewId));
@@ -75,15 +74,14 @@ public class ReviewService {
                     .findByReviewComment(reviewCommentRepository.findById(reviewCommentId));
 
             Recomment temp = new Recomment();
+
             for(int j=0; j < recommentList.size(); j++){
                 temp = recommentList.get(i);
                 recommentRepository.deleteById(temp.getRecommentId());
             }
-
             reviewCommentRepository.deleteById(reviewCommentId);
             recommentList.clear();
         }
-
         reviewRepository.deleteById(reviewId);
     }
 

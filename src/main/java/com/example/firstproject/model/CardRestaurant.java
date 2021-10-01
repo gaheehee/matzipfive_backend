@@ -1,9 +1,8 @@
 package com.example.firstproject.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -22,7 +21,15 @@ public class CardRestaurant {
     private Integer restaurantId;
     @Column(name = "card_id")
     private Integer cardId;
-    //@ManyToOne
-    //@JoinColumn(name = "card_id")
-    //private Card card;
+
+
+    @JsonCreator
+    @Builder
+    public CardRestaurant(@JsonProperty("id") Integer id,
+                          @JsonProperty("restaurant_id") Integer restaurantId,
+                          @JsonProperty("card_id") Integer cardId) {
+        this.id = id;
+        this.restaurantId = restaurantId;
+        this.cardId = cardId;
+    }
 }

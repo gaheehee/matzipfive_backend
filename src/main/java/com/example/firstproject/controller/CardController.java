@@ -53,10 +53,4 @@ public class CardController {
     public void removeRestaurantInCard(@PathVariable Integer cardId, @PathVariable Integer restaurantId){
         cardService.removeRestaurantInCard(cardId, restaurantId);
     }
-
-    // 해당 카드에 저장된 맛집 id 정보
-    /*@GetMapping("/restaurantsInCard/{cardId}")
-    public List<CardRestaurants> getRestaurantsByCardId(@PathVariable Integer cardId){
-        return cardService.getRestaurantsByCardId(cardId);
-    }*/
 }
