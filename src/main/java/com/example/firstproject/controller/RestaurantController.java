@@ -24,4 +24,10 @@ public class RestaurantController {
         return restaurantService.getRestaurantByRestaurantId(restaurantId);
     }
 
+    // 해당 카드 안의 맛집 가져오기
+    @GetMapping("/InCard/{cardId}")
+    public List<Restaurant> getRestaurantsByCardId(@PathVariable Integer cardId){
+        return restaurantService.getRestaurantByCardId(cardId);
+    }
+
 }

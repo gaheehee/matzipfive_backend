@@ -26,16 +26,17 @@ public class CardController {
     }
 
     // 해당 테마에 등록된 카드들 가져오기
-    @GetMapping("cardsByTheme/{themeId}")
+    @GetMapping("/cardsByTheme/{themeId}")
     public List<Card> getCardsByThemeId(@PathVariable Integer themeId){
         return cardService.getCardsByThemeId(themeId);
     }
 
-    @PostMapping("")
-    public Card registerCard(@RequestBody Card card) {
-        return cardService.registerCard(card);
+    @PostMapping("/registration/{themeId}/{userId}")
+    public Card registerCard(@PathVariable Integer themeId, @PathVariable String userId, @RequestBody Card card) {
+        return cardService.registerCard(themeId, userId, card);
     }
 
+    // 카드 삭제될 때, cardRetaurant 테이블에서 해당 row들도 삭제되어야함.
     @DeleteMapping("/{cardId}")
     public void removeCard(@PathVariable Integer cardId ) {
         cardService.removeCard(cardId);

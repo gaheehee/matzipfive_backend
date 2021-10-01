@@ -30,7 +30,7 @@ public class ThemeController {
     }
 
     // 해당 user가 등록한 테마들 가져오기
-    @GetMapping("themesByUser/{userId}")
+    @GetMapping("/themesByUser/{userId}")
     public List<Theme> getThemeByUserId(@PathVariable String userId){
         return themeService.getThemeByUserId(userId);
     }
@@ -53,9 +53,4 @@ public class ThemeController {
         themeService.removeTheme(themeId);
     }
 
-    //해당 테마에 등록된 카드id 정보 가져오기
-    /*@GetMapping("/CardsInTheme/{themeId}")
-    public List<ThemeCard> getAllCardsByThemeId(@PathVariable Integer themeId){
-        return themeService.getAllCardsByThemeId(themeId);
-    }*/
 }

@@ -20,8 +20,9 @@ public class CardRestaurant {
     private Integer id;
     @Column(name = "restaurant_id")
     private Integer restaurantId;
-
-    @ManyToOne
-    @JoinColumn(name = "card_id")
-    private Card card;
+    @Column(name = "card_id")
+    private Integer cardId;
+    //@ManyToOne
+    //@JoinColumn(name = "card_id")
+    //private Card card;
 }

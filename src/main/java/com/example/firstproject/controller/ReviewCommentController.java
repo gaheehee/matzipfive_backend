@@ -19,6 +19,7 @@ public class ReviewCommentController {
         return reviewCommentService.getAllReviewComments();
     }
 
+    // 해당 리뷰에 달린 reviewComment들 가져오기
     @GetMapping("/reviewCommentsInReview/{reviewId}")
     public List<ReviewComment> getReviewCommentsByReviewId(@PathVariable Integer reviewId) {
         return reviewCommentService.getReviewCommentsByReviewId(reviewId);
@@ -34,6 +35,7 @@ public class ReviewCommentController {
         reviewCommentService.modifyReviewComment(reviewCommentId, reviewComment);
     }
 
+    // reviewComment 지워지면 해당 reviewComment 밑에 있는 recomment들도 지워져야함
     @DeleteMapping("/{reviewCommentId}")
     public void removeReviewComment(@PathVariable Integer reviewCommentId) {
         reviewCommentService.removeReviewComment(reviewCommentId);

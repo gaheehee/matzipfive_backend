@@ -1,7 +1,9 @@
 package com.example.firstproject.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 
 import javax.persistence.*;
@@ -11,6 +13,7 @@ import java.util.List;
 
 //@Table(name = "user")
 @Entity(name = "user")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
 @Getter
 @Setter
 @ToString
@@ -25,8 +28,8 @@ public class User {
     @Column(name = "user_password")
     private String userPassword;
 
-    @OneToMany(mappedBy = "user")
-    private List<Theme> themes =new ArrayList<>();
+    //@OneToMany(mappedBy = "user")
+    //private List<Theme> themes =new ArrayList<>();
 
 
     @JsonCreator

@@ -19,6 +19,7 @@ public class RecommentController {
         return recommentService.getAllRecomments();
     }
 
+    // reviewComment에 달린 recomment들 가져오기
     @GetMapping("/{reviewCommentId}")
     public Recomment getRecommentByReviewCommentId(@PathVariable Integer reviewCommentId) {
         return recommentService.getRecommentByReviewCommentId(reviewCommentId);
@@ -29,12 +30,12 @@ public class RecommentController {
         return recommentService.registerRecomment(reviewCommentId, recomment);
     }
 
-    @PutMapping("/{reviewCommentId}/{recommentId}")
+    @PutMapping("/{recommentId}")
     public void modifyRecomment(@PathVariable Integer recommentId, @RequestBody Recomment recomment) {
         recommentService.modifyRecomment(recommentId, recomment);
     }
 
-    @DeleteMapping("/{reviewCommentId}/{recommentId}")
+    @DeleteMapping("/{recommentId}")
     public void removeRecomment(@PathVariable Integer recommentId) {
         recommentService.removeRecomment(recommentId);
     }

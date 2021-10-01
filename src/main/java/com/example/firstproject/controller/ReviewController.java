@@ -40,6 +40,7 @@ public class ReviewController {
         reviewService.modifyReview(reviewId, review);
     }
 
+    // 리뷰 지워지면, 리뷰에 달린 대대댓글들 다 지워져야함!
     @DeleteMapping("/{reviewId}")
     public void removeReview(@PathVariable Integer reviewId) {
         reviewService.removeReview(reviewId);

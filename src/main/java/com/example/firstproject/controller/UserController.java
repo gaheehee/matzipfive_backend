@@ -1,5 +1,6 @@
 package com.example.firstproject.controller;
 
+import com.example.firstproject.model.Review;
 import com.example.firstproject.model.UserSavedRestaurants;
 import com.example.firstproject.model.User;
 import com.example.firstproject.model.UserHeartReview;
@@ -46,17 +47,20 @@ public class UserController {
 
     // user가 하트누른 리뷰 id 정보
     @GetMapping("/heartReviews/{userId}")
-    public List<UserHeartReview> getHeartReviewsByUserId(@PathVariable String userId){
-        return userService.getHeartReviewsByUserId(userId);
+    public List<UserHeartReview> getHeartReviewByUserId(@PathVariable String userId){
+        return userService.getHeartReviewByUserId(userId);
     }
+    /*public List<Review> getHeartReviewsByUserId(@PathVariable String userId){
+        return userService.getHeartReviewsByUserId(userId);
+    }*/
 
-    // user가 리뷰에 하트 눌렀을때
+    // user가 리뷰에 하트 눌렀을때, review 테이블에서 해당 리뷰 heartNum 수 증가
     @PostMapping("/heartReviews")
     public UserHeartReview insertHeartReview(@RequestBody UserHeartReview userHeartReviewIds){
         return userService.insertHeartReview(userHeartReviewIds);
     }
 
-    // user가 리뷰 하트 누른거 취소
+    // user가 리뷰 하트 누른거 취소, review 테이블에서 해당 리뷰 heartNum 수 감소
     @DeleteMapping("/heartReviews/{userId}/{reviewId}")
     public void deleteHeartReviewByUserIdAndReviewId(@PathVariable String userId, @PathVariable Integer reviewId){
         userService.deleteHeartReviewByUserIdAndReviewId(userId, reviewId);
@@ -81,19 +85,4 @@ public class UserController {
         userService.deleteSavedRestaurantByUserIdAndRestaurantId(userId, restaurantId);
     }
 
-    // user가 등록한 테마 id 정보
-    /*@GetMapping("/registerThemes/{userId}")
-    public List<UserRegisteredTheme> getRegisterThemeIdsByUserId(@PathVariable String userId){
-        return userService.getRegisterThemeIdsByUserId(userId);
-    }
-
-    @PostMapping("/registerThemes")
-    public UserRegisteredTheme insertRegisterTheme(@RequestBody UserRegisteredTheme userRegisterThemeIds){
-        return userService.insertRegisterTheme(userRegisterThemeIds);
-    }
-
-    @DeleteMapping("/registerThemes/{userId}/{themeId}")
-    public void removeRegisterThemeByThemeId(@PathVariable String userId, @PathVariable Integer themeId){
-        userService.removeRegisterThemeByThemeId(themeId);
-    }*/
 }

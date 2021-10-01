@@ -14,4 +14,6 @@ public interface UserHeartReviewRepository extends JpaRepository<UserHeartReview
 
     @Transactional
     void deleteByUserIdAndReviewId(String userId, Integer reviewId);
+
+    List<Integer> findReviewIdsByUserId(String userId);
 }
