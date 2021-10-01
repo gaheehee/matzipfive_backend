@@ -41,8 +41,8 @@ public class ReviewController {
 
     // 특정 리뷰 수정하기
     @PutMapping("/{reviewId}")
-    public void modifyReview(@PathVariable Integer reviewId, @RequestBody Review review) {
-        reviewService.modifyReview(reviewId, review);
+    public void modifyReview(@RequestBody Review review) {
+        reviewService.modifyReview(review);
     }
 
     // 특정 리뷰 삭제

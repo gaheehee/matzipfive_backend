@@ -55,7 +55,7 @@ public class ReviewService {
         return review;
     }
 
-    public void modifyReview(Integer reviewId, Review review) {
+    public void modifyReview(Review review) {
         reviewRepository.save(review);
     }
 
