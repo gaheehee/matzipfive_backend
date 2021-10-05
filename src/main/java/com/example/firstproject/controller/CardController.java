@@ -1,7 +1,6 @@
 package com.example.firstproject.controller;
 
 import com.example.firstproject.model.Card;
-//import com.example.firstproject.model.CardRestaurants;
 import com.example.firstproject.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -1,7 +1,6 @@
 package com.example.firstproject.controller;
 
 import com.example.firstproject.model.Theme;
-//import com.example.firstproject.model.ThemeCard;
 import com.example.firstproject.service.ThemeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -42,7 +41,7 @@ public class ThemeController {
         return themeService.registerTheme(theme);
     }
 
-    //테마 정보 변경 -> 쓸 일이 없을듯
+    //테마 정보 변경
     @PutMapping("/{themeId}")
     public void modifyTheme(@RequestBody Theme theme) {
         themeService.modifyTheme(theme);
