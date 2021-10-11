@@ -1,10 +1,10 @@
 package com.example.firstproject.controller;
 
-import com.example.firstproject.service.UserService;
+import com.example.firstproject.service.RestaurantService;
+import com.example.firstproject.service.ReviewCommentService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -15,13 +15,12 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(controllers = UserController.class) // Rest API를 테스트를 위해 WebMvc 추가
-@DisplayName("UserController 테스트")
-class UserControllerTest {
+@WebMvcTest(controllers = RestaurantController.class) // Rest API를 테스트를 위해 WebMvc 추가
+@DisplayName("RestaurantController 테스트")
+public class RestaurantControllerTest {
 
-    // UserController에서 사용하는 Service
     @MockBean
-    private UserService userService;
+    private RestaurantService restaurantService;
 
     @Autowired
     private MockMvc mvc;
@@ -31,9 +30,7 @@ class UserControllerTest {
 
     @Test
     void urlTest() throws Exception{
-        mvc.perform(get("/users"))
+        mvc.perform(get("/restaurants"))
                 .andExpect(status().isOk());
     }
-
-
 }

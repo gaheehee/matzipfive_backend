@@ -15,6 +15,7 @@ public class Restaurant {
 
     @Id
     @Column(name = "restaurant_id")
+    //@GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer restaurantId;
     @Column(name = "restaurant_name")
     private String restaurantName;
