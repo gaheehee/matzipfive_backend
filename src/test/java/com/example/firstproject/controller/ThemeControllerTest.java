@@ -1,6 +1,5 @@
 package com.example.firstproject.controller;
 
-import com.example.firstproject.service.CardService;
 import com.example.firstproject.service.ThemeService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

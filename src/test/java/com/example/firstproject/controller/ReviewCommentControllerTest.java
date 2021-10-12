@@ -1,7 +1,6 @@
 package com.example.firstproject.controller;
 
 import com.example.firstproject.service.ReviewCommentService;
-import com.example.firstproject.service.UserService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
