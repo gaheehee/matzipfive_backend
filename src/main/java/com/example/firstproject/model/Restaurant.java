@@ -20,6 +20,11 @@ public class Restaurant {
     @Column(name = "restaurant_name")
     private String restaurantName;
 
+    /*private double latitude;
+    private double longitude;
+    private GooglePhoto photo;
+    private String address;*/
+
 
     @JsonCreator
     @Builder
