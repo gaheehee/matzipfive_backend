@@ -12,7 +12,7 @@ import javax.persistence.*;
 @ToString
 @Builder
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 public class CardRestaurant {
 
     @Id
@@ -25,13 +25,12 @@ public class CardRestaurant {
     private Integer cardId;
 
 
-    /*@JsonCreator
-    @Builder
+    @JsonCreator
     public CardRestaurant(@JsonProperty("id") Integer id,
                           @JsonProperty("restaurant_id") Integer restaurantId,
                           @JsonProperty("card_id") Integer cardId) {
         this.id = id;
         this.restaurantId = restaurantId;
         this.cardId = cardId;
-    }*/
+    }
 }

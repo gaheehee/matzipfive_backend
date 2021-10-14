@@ -10,7 +10,9 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class Recomment {
 
     @Id
@@ -33,7 +35,6 @@ public class Recomment {
 
 
     @JsonCreator
-    @Builder
     public Recomment(
                      @JsonProperty("recomment_id") Integer recommentId,
                      @JsonProperty("user_id") String userId,

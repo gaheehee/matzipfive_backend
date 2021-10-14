@@ -34,13 +34,13 @@ public class Card {
     private Theme theme;
 
 
-    /*@JsonCreator
+    @JsonCreator
     public Card(@JsonProperty("card_id") Integer cardId,
                 @JsonProperty("created_at") String createdAt) {
 
         this.cardId = cardId;
         //this.userId = userId;
         this.createdAt = createdAt;
-    }*/
+    }
 
 }
