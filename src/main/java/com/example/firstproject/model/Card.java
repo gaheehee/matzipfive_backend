@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Setter
 @ToString
 @AllArgsConstructor
+@Builder
 @NoArgsConstructor
 public class Card {
 
@@ -34,7 +35,6 @@ public class Card {
 
 
     @JsonCreator
-    @Builder
     public Card(@JsonProperty("card_id") Integer cardId,
                 @JsonProperty("created_at") String createdAt) {
 
