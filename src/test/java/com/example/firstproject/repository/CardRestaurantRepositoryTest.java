@@ -19,7 +19,7 @@ public class CardRestaurantRepositoryTest {
     private CardRestaurantRepository cardRestaurantRepository;
 
     @Test
-    public void CaardRestauranatSaveTest(){
+    public void CardRestauranatSaveTest(){
 
         // given
         final CardRestaurant cardRestaurant = CardRestaurant.builder()

@@ -22,8 +22,8 @@ dependencies {
 
 	//jackson for request result to json
 	//responsebody -> json
-	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.0'
-	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.11.0'
+	//implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.0'
+	//implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.11.0'
 
 	//swagger 의존성 추가
 	implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
@@ -33,7 +33,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-mustache'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 
-	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.2'
+	//implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.2'
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'mysql:mysql-connector-java:8.0.21'
 	implementation group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.2.2.Final'
