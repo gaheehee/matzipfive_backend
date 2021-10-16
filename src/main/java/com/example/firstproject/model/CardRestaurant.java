@@ -10,9 +10,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
-@Builder
 @NoArgsConstructor
-//@AllArgsConstructor
 public class CardRestaurant {
 
     @Id
@@ -26,6 +24,7 @@ public class CardRestaurant {
 
 
     @JsonCreator
+    @Builder
     public CardRestaurant(@JsonProperty("id") Integer id,
                           @JsonProperty("restaurant_id") Integer restaurantId,
                           @JsonProperty("card_id") Integer cardId) {
