@@ -19,7 +19,7 @@ script: "./gradlew clean build"
 
 before_install:
   - chmod a+x gradlew
-  - mysql -u root --password="root"
+  - mysql -u root 
   #- mysql -e 'CREATE DATABASE test;'
 
 # CI 실행 완료시 메일로 알람
