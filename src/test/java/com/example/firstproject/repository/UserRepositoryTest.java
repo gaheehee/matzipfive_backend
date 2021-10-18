@@ -19,19 +19,41 @@ public class UserRepositoryTest {
     private UserRepository userRepository;
 
     @Test
+    public void insert(){
+        String userId = "jghgahee";
+        String userName = "gahee";
+        String userPassword = "password123";
+
+        User user = User.builder()
+                .userId(userId)
+                .userName(userName)
+                .userPassword(userPassword)
+                .build();
+
+        userRepository.save(user);
+    }
+
+    /*@Test
     void saveUserTest() {
 
         // given
+        String userId = "jghgahee";
+        String userName = "gahee";
+        String userPassword = "password123";
 
-        User user = new User("jghgahee","gahee", "password123");
+        final User user = User.builder()
+                .userId(userId)
+                .userName(userName)
+                .userPassword(userPassword)
+                .build();
 
         // when
         final User savedUser = userRepository.save(user);
 
         // then
-        /*assertEquals("jghgahee",savedUser.getUserId());
-        assertEquals("gahee", savedUser.getUserName());
-        assertEquals("password123", savedUser.getUserPassword());*/
-    }
+        assertEquals(userId,savedUser.getUserId());
+        assertEquals(userName, savedUser.getUserName());
+        assertEquals(userPassword, savedUser.getUserPassword());
+    }*/
 }
 
