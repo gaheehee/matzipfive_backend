@@ -23,6 +23,14 @@ before_install:
   #- mysql -u root
   #- mysql -e 'CREATE DATABASE test;'
 
+addons:
+  apt:
+    sources:
+      - mysql-5.7-trusty
+    packages:
+      - mysql-server
+      - mysql-client
+
 # CI 실행 완료시 메일로 알람
 notifications:
   email:
