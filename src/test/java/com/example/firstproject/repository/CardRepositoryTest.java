@@ -1,8 +1,6 @@
 package com.example.firstproject.repository;
 
 import com.example.firstproject.model.Card;
-import com.example.firstproject.model.Theme;
-import com.example.firstproject.model.User;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +22,8 @@ public class CardRepositoryTest {
     public void saveCardTest(){
 
         // given
-        User user = new User("gahee", "userName", "userPassword");
-        Theme theme = new Theme(8, "themeName", "userId", 6);
         final Card card = Card.builder()
                 .createdAt("createdAt")
-                .cardId(3)
-                .theme(theme)
-                .user(user)
                 .build();
 
         // when
