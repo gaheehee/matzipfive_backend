@@ -18,7 +18,7 @@ public class CardRestaurantRepositoryTest {
     @Autowired
     private CardRestaurantRepository cardRestaurantRepository;
 
-    @Test
+    /*@Test
     public void CardRestauranatSaveTest(){
 
         // given
@@ -33,5 +33,5 @@ public class CardRestaurantRepositoryTest {
         // then
         assertEquals(1, savedCardRestaurant.getRestaurantId());
         assertEquals(1, savedCardRestaurant.getCardId());
-    }
+    }*/
 }

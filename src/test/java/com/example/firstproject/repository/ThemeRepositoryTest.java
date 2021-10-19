@@ -18,7 +18,7 @@ public class ThemeRepositoryTest {
     @Autowired
     private ThemeRepository themeRepository;
 
-    @Test
+    /*@Test
     public void saveThemeTest (){
 
         // given
@@ -35,5 +35,5 @@ public class ThemeRepositoryTest {
         assertEquals("jghgahee", savedTheme.getUserId());
         assertEquals("good theme", savedTheme.getThemeName());
         assertEquals(0, savedTheme.getCardNum());
-    }
+    }*/
 }

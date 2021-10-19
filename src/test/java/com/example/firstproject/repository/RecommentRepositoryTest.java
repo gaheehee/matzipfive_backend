@@ -18,7 +18,7 @@ public class RecommentRepositoryTest {
     @Autowired
     private RecommentRepository recommentRepository;
 
-    @Test
+    /*@Test
     public void saveRecommentTest(){
 
         // given
@@ -35,5 +35,5 @@ public class RecommentRepositoryTest {
         assertEquals("jghgahee", savedRecomment.getUserId());
         assertEquals("bbb", savedRecomment.getContent());
         assertEquals("createdAt", savedRecomment.getCreatedAt());
-    }
+    }*/
 }

@@ -21,7 +21,7 @@ public class UserSavedRestaurantRepositoryTest {
     @Autowired
     private UserSavedRestaurantsRepository userSavedRestaurantsRepository;
 
-    @Test
+    /*@Test
     public void saveUserSavedRestaurantsTest() {
         // given
         final UserSavedRestaurants userSavedRestaurants = UserSavedRestaurants.builder()
@@ -36,7 +36,7 @@ public class UserSavedRestaurantRepositoryTest {
         assertEquals(userSavedRestaurants.getUserId(),savedUserSavedRestaurants.getUserId());
         assertEquals(1,savedUserSavedRestaurants.getRestaurantId());
 
-    }
+    }*/
 
     /*@Test
     public void findAllByUserIdSuccessTest(){
