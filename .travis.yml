@@ -14,11 +14,22 @@ mysql:
   username: root
   encoding: utf8
 
-before_script:
-  - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
+#before_script:
+ # - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
 
 before_install:
   - chmod a+x gradlew
+  - - ls -al /etc/mysql
+    - sudo service mysql stop
+    - echo "[mysqld]" > $HOME/.my.cnf
+    - echo "lower-case-table-names = 1" >> $HOME/.my.cnf
+    - cat $HOME/.my.cnf # be sure it registered
+    - service --status-all
+    - sudo sed -i '/\[mysqld\]/a lower_case_table_names = 1 '  /etc/mysql/mysql.conf.d/mysqld.cnf
+    - cat /etc/mysql/my.cnf
+    - sudo service mysql start
+    - mysql --verbose -e  "show variables like 'lower%';" --user=root
+    - mysql -u root --password="" < ./create_tables.sql
 
 branches:
   only:
