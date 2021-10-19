@@ -19,7 +19,7 @@ script: "./gradlew clean build"
 
 before_install:
   - chmod a+x gradlew
-  - mysql -e 'CREATE DATABASE test;'
+  #- mysql -e 'CREATE DATABASE test;'
   #- mysql -u root -e 'CREATE DATABASE test;'
   #- mysql -u root
   #- mysql -e 'CREATE DATABASE test;'
