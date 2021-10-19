@@ -18,7 +18,7 @@ public class UserRepositoryTest {
     @Autowired
     private UserRepository userRepository;
 
-    @Test
+    /*@Test
     public void insert(){
         String userId = "jghgahee";
         String userName = "gahee";
@@ -31,7 +31,7 @@ public class UserRepositoryTest {
                 .build();
 
         userRepository.save(user);
-    }
+    }*/
 
     /*@Test
     void saveUserTest() {
