@@ -9,9 +9,16 @@ jdk:
 services:
   - mysql
 
+mysql:
+  database: test1
+  username: root
+  encoding: utf8
+
+before_script:
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
+
 before_install:
   - chmod a+x gradlew
-  - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
 
 branches:
   only:
