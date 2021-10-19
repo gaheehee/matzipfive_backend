@@ -3,7 +3,7 @@ jdk:
   - openjdk8
 
 services:
-  - mysql
+  - mssql_server
 
 branches:
   only:
