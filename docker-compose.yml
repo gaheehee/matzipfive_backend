@@ -1,20 +1,32 @@
 version: "3.0"
 services:
   #service명
-  database:
-    image: mysql
+  mysql:
+    image: mysql:8
     # 컨테이너 이름 설정(해도되고 안해도 되고)
     container_name: matzip_db
+    restart: on-failure
     environment:
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_HOST: '%'
       MYSQL_DATABASE: test
     ports:
-      - 3306:3306
-  matzipfive/springboot:
-    build: .
+      - 3307:3306
+
+
+  matzip_app:
+    container_name: matzip_app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      MYSQL_ADDRESS: mysql
+      MYSQL_USERNAME: root
+      MYSQL_PASSWORD: root
+    ports:
+      - 8088:8080
     restart: on-failure
     links:
-      - db
+      - mysql
     depends_on:
-      - db
+      - mysql
