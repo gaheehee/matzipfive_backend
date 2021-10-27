@@ -20,9 +20,9 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      MYSQL_ADDRESS: mysql
-      MYSQL_USERNAME: root
-      MYSQL_PASSWORD: root
+      MYSQL_ADDRESS: matzipfive.cnj8s2utcsrc.ap-northeast-2.rds.amazonaws.com
+      MYSQL_USERNAME: wave
+      MYSQL_PASSWORD: 
     ports:
       - 8088:8080
     restart: on-failure
