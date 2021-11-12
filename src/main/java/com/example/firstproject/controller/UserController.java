@@ -20,6 +20,8 @@ public class UserController {
         return userService.getAllUsers();
     }
 
+    //git test
+    
     //비밀번호 비교
     @GetMapping("/login")
     public Boolean comparePassword(@RequestBody User user) {
